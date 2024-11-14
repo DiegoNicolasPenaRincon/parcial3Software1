@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="594.0" prefWidth="787.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.alquiler.controller.SACController">
+   <children>
+      <Label fx:id="iconoClaveLbl" layoutX="453.0" layoutY="111.0" text="Solicitud de novedades de notas" textFill="#2db23f">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="logoImgView" fitHeight="95.0" fitWidth="110.0" layoutX="591.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="95.0" fitWidth="100.0" layoutX="25.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true" />
+      <Label layoutX="45.0" layoutY="178.0" text="Solicitud de novedades de notas" />
+      <Label layoutX="45.0" layoutY="219.0" prefHeight="17.0" prefWidth="245.0" text="Recibo de pago de matricula y otros derechos" />
+      <Circle fill="#2db23f" layoutX="25.0" layoutY="187.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fill="#2db23f" layoutX="25.0" layoutY="228.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+      <Line endX="228.0" layoutX="108.0" layoutY="165.0" startX="-108.0" />
+      <Line endX="-67.5" endY="333.79290771484375" layoutX="404.0" layoutY="262.0" startX="-67.5" startY="-96.5" />
+   </children>
+</AnchorPane>

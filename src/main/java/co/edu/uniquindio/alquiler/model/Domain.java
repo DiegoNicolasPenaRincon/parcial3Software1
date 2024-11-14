@@ -17,4 +17,8 @@ public class Domain {
         return domain;
     }
 
+    //Metodos
+
+    private void accederPlataforma() {}
+
 }
