@@ -1,7 +1,6 @@
 package co.edu.uniquindio.alquiler.controller;
 
 import co.edu.uniquindio.alquiler.model.AlquilaFacil;
-import co.edu.uniquindio.alquiler.model.Cliente;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.fxml.Initializable;

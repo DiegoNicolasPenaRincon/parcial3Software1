@@ -4,7 +4,6 @@ import co.edu.uniquindio.alquiler.enums.Marca;
 import co.edu.uniquindio.alquiler.exceptions.AtributoNegativoException;
 import co.edu.uniquindio.alquiler.exceptions.AtributoVacioException;
 import co.edu.uniquindio.alquiler.model.AlquilaFacil;
-import co.edu.uniquindio.alquiler.model.Vehiculo;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

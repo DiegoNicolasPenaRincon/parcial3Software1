@@ -1,15 +1,11 @@
 package co.edu.uniquindio.alquiler.controller;
 
 import co.edu.uniquindio.alquiler.model.AlquilaFacil;
-import co.edu.uniquindio.alquiler.model.Alquiler;
-import co.edu.uniquindio.alquiler.model.Vehiculo;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
 import java.util.ResourceBundle;

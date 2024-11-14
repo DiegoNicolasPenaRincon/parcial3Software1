@@ -3,14 +3,10 @@ package co.edu.uniquindio.alquiler.controller;
 import co.edu.uniquindio.alquiler.exceptions.AtributoVacioException;
 import co.edu.uniquindio.alquiler.exceptions.InformacionRepetidaException;
 import co.edu.uniquindio.alquiler.model.AlquilaFacil;
-import co.edu.uniquindio.alquiler.model.Cliente;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class RegistroClienteController {
 
