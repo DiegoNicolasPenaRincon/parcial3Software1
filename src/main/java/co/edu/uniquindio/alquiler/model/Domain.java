@@ -4,6 +4,8 @@ public class Domain {
 
     private static Domain domain;
 
+    public FactorySAC factorySAC=FactorySAC.getInstance();
+
 
     private Domain(){
 

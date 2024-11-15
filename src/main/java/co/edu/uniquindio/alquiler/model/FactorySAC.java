@@ -18,4 +18,20 @@ public class FactorySAC {
 
         return factorySAC;
     }
+
+    public String getId() {
+        return Id;
+    }
+
+    public void setId(String id) {
+        Id = id;
+    }
+
+    public SAC getSac() {
+        return sac;
+    }
+
+    public void setSac(SAC sac) {
+        this.sac = sac;
+    }
 }
