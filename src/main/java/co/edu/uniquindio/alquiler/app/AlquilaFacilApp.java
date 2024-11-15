@@ -11,12 +11,12 @@ public class AlquilaFacilApp extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
-        FXMLLoader loader = new FXMLLoader(AlquilaFacilApp.class.getResource("/ventanas/inicio.fxml"));
+        FXMLLoader loader = new FXMLLoader(AlquilaFacilApp.class.getResource("/ventanas/IngresarSAC.fxml"));
         Parent parent = loader.load();
 
         Scene scene = new Scene(parent);
         stage.setScene(scene);
-        stage.setTitle("Alquiler App");
+        stage.setTitle("Ingresar SAC");
         stage.show();
 
 

@@ -1,5 +1,9 @@
 package co.edu.uniquindio.alquiler.controller;
 
+import co.edu.uniquindio.alquiler.model.DatosSesion;
+import co.edu.uniquindio.alquiler.model.Domain;
+import co.edu.uniquindio.alquiler.model.Estudiante;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -34,9 +38,20 @@ public class pagosEnLineaController {
     @FXML
     Button pagarButton;
 
+    public Domain domain= Domain.getInstance();
+
+    DatosSesion datos=DatosSesion.getInstance();
+
+
     public void initialize() {
 
     }
 
+
+    public void mostrarDatosAction(ActionEvent actionEvent) {
+        valorAPagarTextField.setText(""+domain.encontrarReciboPagoValorPagar(datos.getEstudianteSeleccionado(),Integer.parseInt(identificacionTxtField.getText())));
+        nombreEstudianteTextField.setText(datos.getEstudianteSeleccionado().getNombre());
+        codigoTextField.setText(datos.getEstudianteSeleccionado().getId());
+    }
 
 }

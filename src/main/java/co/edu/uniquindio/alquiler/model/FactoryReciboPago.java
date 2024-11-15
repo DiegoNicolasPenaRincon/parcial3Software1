@@ -7,12 +7,12 @@ import java.util.Set;
 public class FactoryReciboPago {
 
     String Id;
-    Set<ReciboPago> listaRecibosPago;
+    ArrayList<ReciboPago> listaRecibosPago;
 
     private static FactoryReciboPago factory;
 
     private FactoryReciboPago(){
-        this.listaRecibosPago=new HashSet<>();
+        this.listaRecibosPago=new ArrayList<>();
         this.Id="1234";
     }
 
@@ -22,5 +22,21 @@ public class FactoryReciboPago {
         }
 
         return factory;
+    }
+
+    public String getId() {
+        return Id;
+    }
+
+    public void setId(String id) {
+        Id = id;
+    }
+
+    public ArrayList<ReciboPago> getListaRecibosPago() {
+        return listaRecibosPago;
+    }
+
+    public void setListaRecibosPago(ArrayList<ReciboPago> listaRecibosPago) {
+        this.listaRecibosPago = listaRecibosPago;
     }
 }

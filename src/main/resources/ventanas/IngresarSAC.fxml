@@ -21,11 +21,14 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Button fx:id="trianguloButton" layoutX="273.0" layoutY="322.0" mnemonicParsing="false" text="Button" />
-      <Button fx:id="cuadradoButton" layoutX="382.0" layoutY="322.0" mnemonicParsing="false" text="Button" />
-      <Button fx:id="circuloButton" layoutX="273.0" layoutY="394.0" mnemonicParsing="false" text="Button" />
-      <Button fx:id="caritaFelizButton" layoutX="382.0" layoutY="394.0" mnemonicParsing="false" text="Button" />
-      <Button fx:id="iniciarSesionButton" layoutX="284.0" layoutY="489.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="148.0" text="Iniciar sesion" />
-      <ImageView fx:id="logoImgView" fitHeight="95.0" fitWidth="110.0" layoutX="583.0" layoutY="485.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="trianguloButton" layoutX="273.0" layoutY="322.0" mnemonicParsing="false" onAction="#trianguloAction" text="Button" />
+      <Button fx:id="cuadradoButton" layoutX="382.0" layoutY="322.0" mnemonicParsing="false" onAction="#cuadradoAction" text="Button" />
+      <Button fx:id="circuloButton" layoutX="273.0" layoutY="394.0" mnemonicParsing="false" onAction="#circuloAction" text="Button" />
+      <Button fx:id="caritaFelizButton" layoutX="382.0" layoutY="394.0" mnemonicParsing="false" onAction="#caritaFelizAction" text="Button" />
+      <Button fx:id="iniciarSesionButton" layoutX="284.0" layoutY="489.0" mnemonicParsing="false" onAction="#iniciarSesionAction" prefHeight="57.0" prefWidth="148.0" text="Iniciar sesion" />
+      <ImageView fx:id="logoImgView" fitHeight="95.0" fitWidth="110.0" layoutX="601.0" layoutY="485.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Imagenes/Uniqlog.png" />
+         </image></ImageView>
    </children>
 </AnchorPane>

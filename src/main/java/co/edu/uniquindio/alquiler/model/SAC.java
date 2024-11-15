@@ -29,6 +29,8 @@ public class SAC {
         materia1.listaNotas.add(5.0);
         materia1.listaNotas.add(3.0);
         materia1.listaNotas.add(2.0);
+        materia1.listaNotas.add(1.5);
+        materia1.notaDefinitiva=2.875;
 
         estudiante1.listaMaterias.add(materia1);
 
@@ -42,4 +44,6 @@ public class SAC {
         factoryMateria.listaMaterias.add(materia1);
 
     }
+
+
 }

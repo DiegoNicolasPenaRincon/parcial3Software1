@@ -15,14 +15,17 @@
       <Label fx:id="identificacionLbl" layoutX="125.0" layoutY="114.0" text="Codigo de referencia" textFill="#2db23f" />
       <TextField fx:id="identificacionTxtField" layoutX="274.0" layoutY="110.0" prefHeight="25.0" prefWidth="268.0" />
       <ImageView fx:id="logoImgView" fitHeight="95.0" fitWidth="110.0" layoutX="583.0" layoutY="485.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="consultarButton" layoutX="236.0" layoutY="163.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="219.0" text="Consultar" />
+      <Button fx:id="consultarButton" layoutX="239.0" layoutY="164.0" mnemonicParsing="false" onAction="#mostrarDatosAction" prefHeight="25.0" prefWidth="219.0" text="Consultar" />
       <Label fx:id="codigoLbl" layoutX="132.0" layoutY="250.0" text="Codigo de documento" />
       <TextField fx:id="codigoTextField" layoutX="283.0" layoutY="246.0" prefHeight="25.0" prefWidth="219.0" />
       <Label fx:id="valorAPagarLbl" layoutX="132.0" layoutY="309.0" text="Valor a pagar" />
       <TextField fx:id="valorAPagarTextField" layoutX="283.0" layoutY="305.0" prefHeight="25.0" prefWidth="219.0" />
       <Label fx:id="nombreEstudianteLbl" layoutX="132.0" layoutY="369.0" text="Nombre estudiante" />
       <TextField fx:id="nombreEstudianteTextField" layoutX="284.0" layoutY="365.0" prefHeight="25.0" prefWidth="219.0" />
-      <ImageView fx:id="logimgView" fitHeight="83.0" fitWidth="89.0" layoutX="604.0" layoutY="474.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="logimgView" fitHeight="83.0" fitWidth="89.0" layoutX="604.0" layoutY="474.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Imagenes/Uniqlog.png" />
+         </image></ImageView>
       <Button fx:id="pagarButton" layoutX="332.0" layoutY="443.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="67.0" text="Pagar" />
    </children>
 </AnchorPane>

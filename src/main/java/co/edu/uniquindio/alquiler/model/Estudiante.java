@@ -10,15 +10,63 @@ public class Estudiante {
     String Id;
     String palabraClave;
     String iconoClave;
-    Set<ReciboPago> listaRecibosPago;
-    Set<Materia> listaMaterias;
+    ArrayList<ReciboPago> listaRecibosPago;
+    ArrayList<Materia> listaMaterias;
 
     public Estudiante(String nombre, String id, String palabraClave, String iconoClave) {
         this.nombre = nombre;
         Id = id;
         this.palabraClave = palabraClave;
         this.iconoClave = iconoClave;
-        this.listaRecibosPago = new HashSet<>();
-        this.listaMaterias = new HashSet<>();
+        this.listaRecibosPago = new ArrayList<>();
+        this.listaMaterias = new ArrayList<>();
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getId() {
+        return Id;
+    }
+
+    public void setId(String id) {
+        Id = id;
+    }
+
+    public String getPalabraClave() {
+        return palabraClave;
+    }
+
+    public void setPalabraClave(String palabraClave) {
+        this.palabraClave = palabraClave;
+    }
+
+    public String getIconoClave() {
+        return iconoClave;
+    }
+
+    public void setIconoClave(String iconoClave) {
+        this.iconoClave = iconoClave;
+    }
+
+    public ArrayList<ReciboPago> getListaRecibosPago() {
+        return listaRecibosPago;
+    }
+
+    public void setListaRecibosPago(ArrayList<ReciboPago> listaRecibosPago) {
+        this.listaRecibosPago = listaRecibosPago;
+    }
+
+    public ArrayList<Materia> getListaMaterias() {
+        return listaMaterias;
+    }
+
+    public void setListaMaterias(ArrayList<Materia> listaMaterias) {
+        this.listaMaterias = listaMaterias;
     }
 }

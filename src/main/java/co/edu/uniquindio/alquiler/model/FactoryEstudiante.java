@@ -21,4 +21,20 @@ public class FactoryEstudiante {
 
         return factory;
     }
+
+    public String getId() {
+        return Id;
+    }
+
+    public void setId(String id) {
+        Id = id;
+    }
+
+    public ArrayList<Estudiante> getEstudiantes() {
+        return Estudiantes;
+    }
+
+    public void setEstudiantes(ArrayList<Estudiante> estudiantes) {
+        Estudiantes = estudiantes;
+    }
 }
