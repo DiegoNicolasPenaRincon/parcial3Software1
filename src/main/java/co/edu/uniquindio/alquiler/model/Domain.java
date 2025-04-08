@@ -74,4 +74,6 @@ public class Domain {
         return 0;
     }
 
+    public boolean
+
 }
