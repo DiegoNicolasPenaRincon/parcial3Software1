@@ -46,6 +46,8 @@ public class SACController {
     @FXML
     Button pagosButton;
     @FXML
+    Button CerrarSesionButton;
+    @FXML
     Button actualizarListaRecibos;
     @FXML
     ImageView logoImgView;
@@ -177,5 +179,9 @@ public class SACController {
     public void actualizarListaRecibosOnAction(ActionEvent actionEvent) {
         actualizarListaRecibos.setVisible(true);
         recibosPagoTable.refresh();
+    }
+
+    public void cerrarSesionOnAction(ActionEvent actionEvent) {
+
     }
 }

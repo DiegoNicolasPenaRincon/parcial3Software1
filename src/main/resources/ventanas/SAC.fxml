@@ -52,6 +52,7 @@
             <TableColumn fx:id="numeroReferenciaColumn" prefWidth="138.0" text="Numero referencia" />
         </columns>
       </TableView>
-      <Button fx:id="actualizarListaRecibos" layoutX="543.0" layoutY="442.0" mnemonicParsing="false" onAction="#actualizarListaRecibosOnAction" text="Actualizar" />
+      <Button fx:id="actualizarListaRecibos" layoutX="525.0" layoutY="442.0" mnemonicParsing="false" onAction="#actualizarListaRecibosOnAction" text="Actualizar" />
+      <Button fx:id="CerrarSesionButton" layoutX="681.0" layoutY="16.0" mnemonicParsing="false" onAction="#cerrarSesionOnAction" text="Cerrar sesion" />
    </children>
 </AnchorPane>

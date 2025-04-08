@@ -127,4 +127,8 @@ public class IngresarSACController {
         stage.setScene(scene);
         stage.show();
     }
+
+    public void cerrarVentana() {
+
+    }
 }
