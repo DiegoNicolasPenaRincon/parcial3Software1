@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="594.0" prefWidth="787.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.alquiler.controller.SACController">
+<AnchorPane prefHeight="594.0" prefWidth="787.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.alquiler.controller.SACController">
    <children>
       <Label fx:id="solicitudNovedadesLbl" layoutX="447.0" layoutY="111.0" text="Solicitud de novedades de notas" textFill="#2db23f" visible="false">
          <font>
@@ -47,5 +52,6 @@
             <TableColumn fx:id="numeroReferenciaColumn" prefWidth="138.0" text="Numero referencia" />
         </columns>
       </TableView>
+      <Button fx:id="actualizarListaRecibos" layoutX="543.0" layoutY="442.0" mnemonicParsing="false" onAction="#actualizarListaRecibosOnAction" text="Actualizar" />
    </children>
 </AnchorPane>

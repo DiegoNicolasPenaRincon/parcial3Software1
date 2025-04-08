@@ -46,6 +46,8 @@ public class SACController {
     @FXML
     Button pagosButton;
     @FXML
+    Button actualizarListaRecibos;
+    @FXML
     ImageView logoImgView;
     @FXML
     Circle circulo1;
@@ -79,6 +81,7 @@ public class SACController {
         solicitarPermisoButton.setVisible(false);
         recibosPagoTable.setVisible(false);
         otrosDerechosLabel.setVisible(false);
+        actualizarListaRecibos.setVisible(false);
 
         nombreMateriaColumn.setCellValueFactory( cellData -> new SimpleStringProperty( cellData.getValue().getNombre()));
         codigoMateriaColumn.setCellValueFactory( cellData -> new SimpleStringProperty( cellData.getValue().getCodigo()));
@@ -101,6 +104,7 @@ public class SACController {
         solicitarPermisoButton.setVisible(true);
         recibosPagoTable.setVisible(false);
         otrosDerechosLabel.setVisible(false);
+        actualizarListaRecibos.setVisible(false);
     }
 
     public void otrosDerechosAction(ActionEvent actionEvent) {
@@ -123,8 +127,8 @@ public class SACController {
             try
             {
                 domain.agregarRecibodePago(estudianteSesionIniciada,reciboPago,materiaSeleccionada);
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setHeaderText("Alerta");
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setHeaderText("Informacion");
                 alert.setContentText("Su recibo acaba de ser generado");
                 alert.show();
             }
@@ -170,4 +174,8 @@ public class SACController {
     }
 
 
+    public void actualizarListaRecibosOnAction(ActionEvent actionEvent) {
+        actualizarListaRecibos.setVisible(true);
+        recibosPagoTable.refresh();
+    }
 }

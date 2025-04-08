@@ -21,7 +21,7 @@ public class SAC {
         //Se instancian los estudiantes
 
         Estudiante estudiante1=new Estudiante("Nicolas","12345678","Hola","☻");
-        //Estudiante estudiante2=new Estudiante("Diana","12345679","Adios","☻");
+        Estudiante estudiante2=new Estudiante("Diana","12345679","Adios","☻");
 
         //Se instancian las materias
 

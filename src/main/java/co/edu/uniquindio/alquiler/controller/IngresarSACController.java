@@ -1,6 +1,4 @@
 package co.edu.uniquindio.alquiler.controller;
-
-import co.edu.uniquindio.alquiler.app.AlquilaFacilApp;
 import co.edu.uniquindio.alquiler.exceptions.EstudianteNoRegistradoException;
 import co.edu.uniquindio.alquiler.model.DatosSesion;
 import co.edu.uniquindio.alquiler.model.Domain;
