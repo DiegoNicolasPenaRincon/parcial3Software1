@@ -40,18 +40,17 @@ public class Domain {
     public void agregarRecibodePago(Estudiante estudiante,ReciboPago reciboPago,Materia materia) throws PromedioBajoException {
         for(int i=0;i<factorySAC.sac.factoryEstudiante.getEstudiantes().size();i++)
         {
-            if(factorySAC.sac.factoryEstudiante.getEstudiantes().get(i).equals(estudiante))
-            {
                 if(verificarPromedio(materia))
                 {
+
                     factorySAC.sac.factoryEstudiante.getEstudiantes().get(i).listaRecibosPago.add(reciboPago);
                     i=factorySAC.sac.factoryEstudiante.getEstudiantes().size();
+
                 }
                 else
                 {
                     throw new PromedioBajoException("No puede habilitar esa materia, su promedio es muy bajo");
                 }
-            }
         }
     }
 
@@ -74,6 +73,17 @@ public class Domain {
         return 0;
     }
 
-    public boolean
+    /*public boolean reciboExistente(Estudiante estudiante,ReciboPago reciboNuevo) {
+        for(int i=0;i<estudiante.listaRecibosPago.size();i++)
+        {
+            if(reciboNuevo.equals(estudiante.listaRecibosPago.get(i)))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+     */
 
 }
