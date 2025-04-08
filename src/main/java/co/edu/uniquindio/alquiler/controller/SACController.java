@@ -115,6 +115,8 @@ public class SACController {
         solicitarPermisoButton.setVisible(false);
         recibosPagoTable.setVisible(true);
         otrosDerechosLabel.setVisible(true);
+        actualizarListaRecibos.setVisible(true);
+        recibosPagoTable.refresh();
     }
 
 
