@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>co.edu.uniquindio</groupId>
-    <artifactId>alquiler</artifactId>
+    <artifactId>solicitudHabilitacion</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -39,6 +39,14 @@
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-fxml</artifactId>
             <version>17</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc -->
+        <dependency>
+            <groupId>com.microsoft.sqlserver</groupId>
+            <artifactId>mssql-jdbc</artifactId>
+            <version>12.10.0.jre11</version>
+            <scope>compile</scope>
         </dependency>
 
     </dependencies>
