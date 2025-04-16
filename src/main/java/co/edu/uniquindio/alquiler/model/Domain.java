@@ -104,4 +104,14 @@ public class Domain {
         }
     }
 
+    public void pagarRecibo(int numeroReferencia) {
+        for(int i=0;i<factorySAC.sac.factoryEstudiante.Estudiantes.size();i++)
+        {
+            if(factorySAC.sac.factoryEstudiante.Estudiantes.get(i).listaRecibosPago)
+            {
+
+            }
+        }
+    }
+
 }
