@@ -163,6 +163,7 @@ public class SACController {
     public void cerrarSesionOnAction(ActionEvent actionEvent) {
         Stage ventanaActual = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         ventanaActual.close();
+        estudianteSesionIniciada=null;
     }
 
     public void agregarSolicitudHabilitacion() {
