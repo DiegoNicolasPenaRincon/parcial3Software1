@@ -1,6 +1,7 @@
 package co.edu.uniquindio.alquiler.model;
 
 import co.edu.uniquindio.alquiler.exceptions.PromedioBajoException;
+import co.edu.uniquindio.alquiler.exceptions.ReciboExistenteException;
 
 import java.util.ArrayList;
 
@@ -37,20 +38,25 @@ public class Domain {
         return null;
     }
 
-    public void agregarRecibodePago(Estudiante estudiante,ReciboPago reciboPago,Materia materia) throws PromedioBajoException {
+    public void agregarRecibodePago(Estudiante estudiante,ReciboPago reciboPago,Materia materia) throws PromedioBajoException, ReciboExistenteException {
         for(int i=0;i<factorySAC.sac.factoryEstudiante.getEstudiantes().size();i++)
         {
-            if(factorySAC.sac.factoryEstudiante.getEstudiantes().get(i).equals(estudiante))
+            if(!reciboExistente(estudiante,reciboPago))
             {
                 if(verificarPromedio(materia))
                 {
                     factorySAC.sac.factoryEstudiante.getEstudiantes().get(i).listaRecibosPago.add(reciboPago);
                     i=factorySAC.sac.factoryEstudiante.getEstudiantes().size();
+
                 }
                 else
                 {
                     throw new PromedioBajoException("No puede habilitar esa materia, su promedio es muy bajo");
                 }
+            }
+            else
+            {
+                throw new ReciboExistenteException();
             }
         }
     }
@@ -72,6 +78,40 @@ public class Domain {
             }
         }
         return 0;
+    }
+
+    public boolean reciboExistente(Estudiante estudiante,ReciboPago reciboNuevo) {
+        for(int i=0;i<factorySAC.sac.factoryEstudiante.Estudiantes.size();i++)
+        {
+            for(int j=0;j<factorySAC.sac.factoryEstudiante.Estudiantes.get(i).listaRecibosPago.size();j++)
+            {
+                if(factorySAC.sac.factoryEstudiante.Estudiantes.get(i).listaRecibosPago.get(j).numeroReferencia==reciboNuevo.numeroReferencia)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public void eliminarReciboPago(Estudiante estudiante,ReciboPago reciboPagoEliminar) {
+        for(int i=0;i<factorySAC.sac.factoryEstudiante.Estudiantes.size();i++)
+        {
+            if(estudiante.equals(factorySAC.sac.factoryEstudiante.Estudiantes.get(i)))
+            {
+                factorySAC.sac.factoryEstudiante.getEstudiantes().get(i).listaRecibosPago.remove(reciboPagoEliminar);
+            }
+        }
+    }
+
+    public void pagarRecibo(int numeroReferencia) {
+        for(int i=0;i<factorySAC.sac.factoryEstudiante.Estudiantes.size();i++)
+        {
+            if(factorySAC.sac.factoryEstudiante.Estudiantes.get(i).listaRecibosPago)
+            {
+
+            }
+        }
     }
 
 }

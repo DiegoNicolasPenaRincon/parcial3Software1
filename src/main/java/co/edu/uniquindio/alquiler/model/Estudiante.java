@@ -6,10 +6,10 @@ import java.util.Set;
 
 public class Estudiante {
 
-    String nombre;
-    String Id;
-    String palabraClave;
-    String iconoClave;
+    private String nombre;
+    private String Id;
+    private String palabraClave;
+    private String iconoClave;
     ArrayList<ReciboPago> listaRecibosPago;
     ArrayList<Materia> listaMaterias;
 

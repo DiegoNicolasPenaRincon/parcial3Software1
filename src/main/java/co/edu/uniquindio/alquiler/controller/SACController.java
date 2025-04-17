@@ -2,13 +2,14 @@ package co.edu.uniquindio.alquiler.controller;
 
 import co.edu.uniquindio.alquiler.enums.EstadoRecibo;
 import co.edu.uniquindio.alquiler.exceptions.PromedioBajoException;
+import co.edu.uniquindio.alquiler.exceptions.ReciboExistenteException;
 import co.edu.uniquindio.alquiler.model.*;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -19,10 +20,11 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.List;
 
 public class SACController {
 
+    @FXML
+    Button eliminarButton;
     @FXML
     TableView<ReciboPago> recibosPagoTable;
     @FXML
@@ -45,6 +47,10 @@ public class SACController {
     Button otrosDerechosButton;
     @FXML
     Button pagosButton;
+    @FXML
+    Button CerrarSesionButton;
+    @FXML
+    Button actualizarListaRecibos;
     @FXML
     ImageView logoImgView;
     @FXML
@@ -79,6 +85,8 @@ public class SACController {
         solicitarPermisoButton.setVisible(false);
         recibosPagoTable.setVisible(false);
         otrosDerechosLabel.setVisible(false);
+        actualizarListaRecibos.setVisible(false);
+        eliminarButton.setVisible(false);
 
         nombreMateriaColumn.setCellValueFactory( cellData -> new SimpleStringProperty( cellData.getValue().getNombre()));
         codigoMateriaColumn.setCellValueFactory( cellData -> new SimpleStringProperty( cellData.getValue().getCodigo()));
@@ -101,6 +109,8 @@ public class SACController {
         solicitarPermisoButton.setVisible(true);
         recibosPagoTable.setVisible(false);
         otrosDerechosLabel.setVisible(false);
+        actualizarListaRecibos.setVisible(false);
+        eliminarButton.setVisible(false);
     }
 
     public void otrosDerechosAction(ActionEvent actionEvent) {
@@ -109,40 +119,15 @@ public class SACController {
         solicitarPermisoButton.setVisible(false);
         recibosPagoTable.setVisible(true);
         otrosDerechosLabel.setVisible(true);
+        actualizarListaRecibos.setVisible(true);
+        eliminarButton.setVisible(true);
+        recibosPagoTable.refresh();
     }
 
 
 
     public void solicitarPermisoAction(ActionEvent actionEvent) {
-        Materia materiaSeleccionada=materiasTable.getSelectionModel().getSelectedItem();
-
-        if(materiaSeleccionada!=null)
-        {
-            LocalDate fecha=LocalDate.now();
-            ReciboPago reciboPago=new ReciboPago(estudianteSesionIniciada.getNombre(), EstadoRecibo.GENERADO, fecha,null,fecha.plusDays(10),materiaSeleccionada.getNombre(), (int) (Math.random() * 900) + 100);
-            try
-            {
-                domain.agregarRecibodePago(estudianteSesionIniciada,reciboPago,materiaSeleccionada);
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setHeaderText("Alerta");
-                alert.setContentText("Su recibo acaba de ser generado");
-                alert.show();
-            }
-            catch (PromedioBajoException e)
-            {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setHeaderText("Alerta");
-                alert.setContentText(e.getMessage());
-                alert.show();
-            }
-        }
-        else
-        {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText("Alerta");
-            alert.setContentText("No ha seleccionado ninguna materia");
-            alert.show();
-        }
+        agregarSolicitudHabilitacion();
     }
 
     public void pagosEnLineaAction(ActionEvent actionEvent) {
@@ -170,4 +155,69 @@ public class SACController {
     }
 
 
+    public void actualizarListaRecibosOnAction(ActionEvent actionEvent) {
+        actualizarListaRecibos.setVisible(true);
+        recibosPagoTable.refresh();
+    }
+
+    public void cerrarSesionOnAction(ActionEvent actionEvent) {
+        Stage ventanaActual = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        ventanaActual.close();
+        estudianteSesionIniciada=null;
+    }
+
+    public void agregarSolicitudHabilitacion() {
+        Materia materiaSeleccionada=materiasTable.getSelectionModel().getSelectedItem();
+        if(materiaSeleccionada!=null)
+        {
+            LocalDate fecha=LocalDate.now();
+            ReciboPago reciboPago=new ReciboPago(estudianteSesionIniciada.getNombre(), EstadoRecibo.GENERADO, fecha,null,fecha.plusDays(10),materiaSeleccionada.getNombre(), (int) (Math.random() * 900) + 100);
+            try
+            {
+                domain.agregarRecibodePago(estudianteSesionIniciada,reciboPago,materiaSeleccionada);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setHeaderText("Informacion");
+                alert.setContentText("Su recibo acaba de ser generado");
+                alert.show();
+            }
+            catch (PromedioBajoException e)
+            {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText("Alerta");
+                alert.setContentText(e.getMessage());
+                alert.show();
+            }
+            catch (ReciboExistenteException e)
+            {
+                agregarSolicitudHabilitacion();
+            }
+        }
+        else
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Alerta");
+            alert.setContentText("No ha seleccionado ninguna materia");
+            alert.show();
+        }
+    }
+
+    public void eliminarButtonOnAction(ActionEvent actionEvent) {
+        ReciboPago reciboPagoEliminar=recibosPagoTable.getSelectionModel().getSelectedItem();
+        if(reciboPagoEliminar!=null)
+        {
+            domain.eliminarReciboPago(estudianteSesionIniciada, reciboPagoEliminar);
+            recibosPagoTable.refresh();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText("Informacion");
+            alert.setContentText("Su recibo de pago fue eliminado exitosamente");
+            alert.show();
+        }
+        else
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Alerta");
+            alert.setContentText("No ha seleccionado ningun recibo de pago para eliminar");
+            alert.show();
+        }
+    }
 }
