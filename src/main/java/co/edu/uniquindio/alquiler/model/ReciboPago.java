@@ -14,7 +14,6 @@ public class ReciboPago {
     LocalDate fechaVencimiento;
     String nombreMateria;
     int numeroReferencia;
-    String idRecibo;
 
     public ReciboPago(String IDestudiante, EstadoRecibo estadoRecibo, LocalDate fechaExpedicion, LocalDate fechaPago, LocalDate fechaVencimiento,String nombreMateria,int numeroReferencia) {
         this.IDestudiante = IDestudiante;
@@ -86,11 +85,4 @@ public class ReciboPago {
         this.numeroReferencia = numeroReferencia;
     }
 
-    public String getIdRecibo() {
-        return idRecibo;
-    }
-
-    public void setIdRecibo(String idRecibo) {
-        this.idRecibo = idRecibo;
-    }
 }
