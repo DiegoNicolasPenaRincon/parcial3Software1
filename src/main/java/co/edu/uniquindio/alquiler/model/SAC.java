@@ -1,6 +1,7 @@
 package co.edu.uniquindio.alquiler.model;
 
 import co.edu.uniquindio.alquiler.enums.EstadoRecibo;
+import db.Conexion;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -11,11 +12,12 @@ public class SAC {
     public FactoryEstudiante factoryEstudiante=FactoryEstudiante.getInstance();
     public FactoryMateria factoryMateria=FactoryMateria.getInstance();
     public FactoryReciboPago factoryReciboPago=FactoryReciboPago.getInstance();
+    public Conexion conexionBD=Conexion.getInstance();
 
     public SAC() {
 
 
-        //Se instancian los bancos
+       /* //Se instancian los bancos
 
         Banco banco1=new Banco("Bancolombia");
         Banco banco2=new Banco("Nequi");
@@ -52,6 +54,11 @@ public class SAC {
         factoryEstudiante.Estudiantes.add(estudiante1);
 
         factoryMateria.listaMaterias.add(materia1);
+
+        */
+
+
+        conexionBD.conectarBDSoftware2();
 
     }
 

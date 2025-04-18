@@ -167,38 +167,7 @@ public class SACController {
     }
 
     public void agregarSolicitudHabilitacion() {
-        Materia materiaSeleccionada=materiasTable.getSelectionModel().getSelectedItem();
-        if(materiaSeleccionada!=null)
-        {
-            LocalDate fecha=LocalDate.now();
-            ReciboPago reciboPago=new ReciboPago(estudianteSesionIniciada.getNombre(), EstadoRecibo.GENERADO, fecha,null,fecha.plusDays(10),materiaSeleccionada.getNombre(), (int) (Math.random() * 900) + 100);
-            try
-            {
-                domain.agregarRecibodePago(estudianteSesionIniciada,reciboPago,materiaSeleccionada);
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setHeaderText("Informacion");
-                alert.setContentText("Su recibo acaba de ser generado");
-                alert.show();
-            }
-            catch (PromedioBajoException e)
-            {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setHeaderText("Alerta");
-                alert.setContentText(e.getMessage());
-                alert.show();
-            }
-            catch (ReciboExistenteException e)
-            {
-                agregarSolicitudHabilitacion();
-            }
-        }
-        else
-        {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText("Alerta");
-            alert.setContentText("No ha seleccionado ninguna materia");
-            alert.show();
-        }
+
     }
 
     public void eliminarButtonOnAction(ActionEvent actionEvent) {
@@ -219,5 +188,8 @@ public class SACController {
             alert.setContentText("No ha seleccionado ningun recibo de pago para eliminar");
             alert.show();
         }
+    }
+
+    public void visualizarOnAction(ActionEvent actionEvent) {
     }
 }

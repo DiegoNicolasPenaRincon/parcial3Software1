@@ -70,6 +70,10 @@ public class IngresarSACController {
         palabraClaveSeleccionada="●";
     }
 
+    public void caritaFelizAction(ActionEvent actionEvent) {
+        palabraClaveSeleccionada="☻";
+    }
+
     public void iniciarSesionAction(ActionEvent actionEvent)
     {
         try
@@ -109,10 +113,6 @@ public class IngresarSACController {
             throw new RuntimeException(e);
         }
 
-    }
-
-    public void caritaFelizAction(ActionEvent actionEvent) {
-        palabraClaveSeleccionada="☻";
     }
 
     public void inicializarSACInterfaz() throws IOException {
