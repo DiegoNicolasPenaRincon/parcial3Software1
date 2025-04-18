@@ -5,13 +5,14 @@ import co.edu.uniquindio.alquiler.model.Domain;
 import co.edu.uniquindio.alquiler.model.Estudiante;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 
 public class pagosEnLineaController {
+    @FXML
+    Label metodoPagoLbl;
+    @FXML
+    ComboBox metodoPagoComboBox;
     @FXML
     Label pagosEnLineaLbl;
     @FXML
