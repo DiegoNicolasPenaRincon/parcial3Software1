@@ -14,6 +14,8 @@ public class SAC {
     public FactoryReciboPago factoryReciboPago=FactoryReciboPago.getInstance();
     public Conexion conexionBD=Conexion.getInstance();
 
+    public LocalDate fechaCierrePlataforma=LocalDate.of(2025, 6, 7);
+
     public SAC() {
 
 

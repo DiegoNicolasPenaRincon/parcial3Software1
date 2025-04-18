@@ -41,7 +41,7 @@
       </Label>
       <TableView fx:id="recibosPagoTable" layoutX="352.0" layoutY="179.0" prefHeight="240.0" prefWidth="429.0">
         <columns>
-          <TableColumn fx:id="nombreEstColumn" prefWidth="128.0" text="ID estudiante" />
+          <TableColumn fx:id="IDEstColumn" prefWidth="128.0" text="ID estudiante" />
           <TableColumn fx:id="estadoReciboColumn" prefWidth="95.0" text="Estado recibo" />
             <TableColumn fx:id="valorReciboColumn" prefWidth="67.0" text="Valor" />
             <TableColumn fx:id="numeroReferenciaColumn" prefWidth="138.0" text="Numero referencia" />

@@ -94,8 +94,8 @@ public class SACController {
         codigoMateriaColumn.setCellValueFactory( cellData -> new SimpleStringProperty( cellData.getValue().getCodigo()));
         definitivaColumn.setCellValueFactory( cellData -> new SimpleStringProperty( String.valueOf(cellData.getValue().getNotaDefinitiva()) ) );
 
-        IDEstColumn.setCellValueFactory( cellData -> new SimpleStringProperty( cellData.getValue().getIDestudiante()));
         estadoReciboColumn.setCellValueFactory( cellData -> new SimpleStringProperty( String.valueOf(cellData.getValue().getEstadoRecibo()) ) );
+        IDEstColumn.setCellValueFactory( cellData -> new SimpleStringProperty( cellData.getValue().getIDestudiante()));
         valorReciboColumn.setCellValueFactory( cellData -> new SimpleStringProperty( cellData.getValue().getValorPagar()+""));;
         numeroReferenciaColumn.setCellValueFactory( cellData -> new SimpleStringProperty( cellData.getValue().getNumeroReferencia()+""));
 
@@ -174,12 +174,12 @@ public class SACController {
         if(materiaSeleccionada!=null)
         {
             LocalDate fecha=LocalDate.now();
-            ReciboPago reciboPago=new ReciboPago(estudianteSesionIniciada.getNombre(), EstadoRecibo.GENERADO, fecha,null,fecha.plusDays(10),materiaSeleccionada.getNombre(), (int) (Math.random() * 900) + 100);
+            ReciboPago reciboPago=new ReciboPago(estudianteSesionIniciada.getId(), EstadoRecibo.GENERADO, fecha,null,domain.factorySAC.getSac().fechaCierrePlataforma,materiaSeleccionada.getNombre(), (int) (Math.random() * 900) + 100);
             try
             {
                 domain.agregarRecibodePago(estudianteSesionIniciada,reciboPago,materiaSeleccionada);
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setHeaderText("Alerta");
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setHeaderText("Informacion");
                 alert.setContentText("Su recibo acaba de ser generado");
                 alert.show();
             }
@@ -221,5 +221,6 @@ public class SACController {
     }
 
     public void visualizarOnAction(ActionEvent actionEvent) {
+        
     }
 }
