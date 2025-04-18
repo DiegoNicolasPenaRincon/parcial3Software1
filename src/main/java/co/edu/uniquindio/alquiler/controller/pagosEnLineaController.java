@@ -1,5 +1,6 @@
 package co.edu.uniquindio.alquiler.controller;
 
+import co.edu.uniquindio.alquiler.enums.MetodoPago;
 import co.edu.uniquindio.alquiler.model.DatosSesion;
 import co.edu.uniquindio.alquiler.model.Domain;
 import co.edu.uniquindio.alquiler.model.Estudiante;
@@ -12,7 +13,7 @@ public class pagosEnLineaController {
     @FXML
     Label metodoPagoLbl;
     @FXML
-    ComboBox metodoPagoComboBox;
+    ComboBox<MetodoPago> metodoPagoComboBox;
     @FXML
     Label pagosEnLineaLbl;
     @FXML
@@ -46,7 +47,7 @@ public class pagosEnLineaController {
 
 
     public void initialize() {
-
+        this.metodoPagoComboBox.getItems().setAll(MetodoPago.values());
     }
 
 
