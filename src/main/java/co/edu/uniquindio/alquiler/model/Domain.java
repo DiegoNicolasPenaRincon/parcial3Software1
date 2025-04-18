@@ -1,8 +1,10 @@
 package co.edu.uniquindio.alquiler.model;
 
+import co.edu.uniquindio.alquiler.enums.EstadoRecibo;
 import co.edu.uniquindio.alquiler.exceptions.PromedioBajoException;
 import co.edu.uniquindio.alquiler.exceptions.ReciboExistenteException;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Domain {
@@ -69,15 +71,15 @@ public class Domain {
         return false;
     }
 
-    public double encontrarReciboPagoValorPagar(Estudiante estudiante,int codigoReferencia) {
+    public ReciboPago encontrarReciboPagar(Estudiante estudiante,int codigoReferencia) {
         for(int i=0;i<estudiante.listaRecibosPago.size();i++)
         {
             if(estudiante.listaRecibosPago.get(i).numeroReferencia==codigoReferencia)
             {
-                return estudiante.listaRecibosPago.get(i).valorPagar;
+                return estudiante.listaRecibosPago.get(i);
             }
         }
-        return 0;
+        return null;
     }
 
     public boolean reciboExistente(Estudiante estudiante,ReciboPago reciboNuevo) {
@@ -104,16 +106,21 @@ public class Domain {
         }
     }
 
-    /*public void pagarRecibo(int numeroReferencia) {
+    public void pagarRecibo(int numeroReferencia) {
         for(int i=0;i<factorySAC.sac.factoryEstudiante.Estudiantes.size();i++)
         {
-            if(factorySAC.sac.factoryEstudiante.Estudiantes.get(i).listaRecibosPago)
+            for(int j=0;i<factorySAC.sac.factoryEstudiante.Estudiantes.get(i).listaRecibosPago.size();j++)
             {
-
+                if(factorySAC.sac.factoryEstudiante.Estudiantes.get(i).listaRecibosPago.get(j).numeroReferencia==numeroReferencia)
+                {
+                    factorySAC.sac.factoryEstudiante.Estudiantes.get(i).listaRecibosPago.get(j).estadoRecibo= EstadoRecibo.PAGADO;
+                    factorySAC.sac.factoryEstudiante.Estudiantes.get(i).listaRecibosPago.get(j).fechaPago= LocalDate.now();
+                    factorySAC.sac.factoryEstudiante.Estudiantes.get(i).listaRecibosPago.get(j).fechaVencimiento=null;
+                    j=factorySAC.sac.factoryEstudiante.Estudiantes.get(i).listaRecibosPago.size();
+                    i=factorySAC.sac.factoryEstudiante.Estudiantes.size();
+                }
             }
         }
     }
-
-     */
 
 }

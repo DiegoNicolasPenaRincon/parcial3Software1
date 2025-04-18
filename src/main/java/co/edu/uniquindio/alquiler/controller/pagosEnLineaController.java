@@ -5,6 +5,7 @@ import co.edu.uniquindio.alquiler.model.Domain;
 import co.edu.uniquindio.alquiler.model.Estudiante;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -49,9 +50,21 @@ public class pagosEnLineaController {
 
 
     public void mostrarDatosAction(ActionEvent actionEvent) {
-        valorAPagarTextField.setText(""+domain.encontrarReciboPagoValorPagar(datos.getEstudianteSeleccionado(),Integer.parseInt(identificacionTxtField.getText())));
-        nombreEstudianteTextField.setText(datos.getEstudianteSeleccionado().getNombre());
-        codigoTextField.setText(datos.getEstudianteSeleccionado().getId());
+        nombreEstudianteTextField.setText("");
+        identificacionTxtField.setText("");
+        if(domain.encontrarReciboPagar(datos.getEstudianteSeleccionado(),Integer.parseInt(codigoTextField.getText()))!=null)
+        {
+
+        }
+        if(valorAPagarTextField!=null&&!valorAPagarTextField.equals(""))
+        {
+            nombreEstudianteTextField.setText(datos.getEstudianteSeleccionado().getNombre());
+            codigoTextField.setText(datos.getEstudianteSeleccionado().getId());
+        }
     }
 
+
+    public void pagarOnAction(ActionEvent actionEvent) {
+
+    }
 }
