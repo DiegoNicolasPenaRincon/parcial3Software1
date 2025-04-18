@@ -204,12 +204,22 @@ public class SACController {
         ReciboPago reciboPagoEliminar=recibosPagoTable.getSelectionModel().getSelectedItem();
         if(reciboPagoEliminar!=null)
         {
-            domain.eliminarReciboPago(estudianteSesionIniciada, reciboPagoEliminar);
-            recibosPagoTable.refresh();
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setHeaderText("Informacion");
-            alert.setContentText("Su recibo de pago fue eliminado exitosamente");
-            alert.show();
+            if(reciboPagoEliminar.getEstadoRecibo()==EstadoRecibo.PAGADO)
+            {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText("Alerta");
+                alert.setContentText("No puede eliminar un recibo que ya ha pagado previamente");
+                alert.show();
+            }
+            else
+            {
+                domain.eliminarReciboPago(estudianteSesionIniciada, reciboPagoEliminar);
+                recibosPagoTable.refresh();
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setHeaderText("Informacion");
+                alert.setContentText("Su recibo de pago fue eliminado exitosamente");
+                alert.show();
+            }
         }
         else
         {

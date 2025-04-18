@@ -50,21 +50,36 @@ public class pagosEnLineaController {
 
 
     public void mostrarDatosAction(ActionEvent actionEvent) {
-        nombreEstudianteTextField.setText("");
-        identificacionTxtField.setText("");
-        if(domain.encontrarReciboPagar(datos.getEstudianteSeleccionado(),Integer.parseInt(codigoTextField.getText()))!=null)
-        {
-
-        }
-        if(valorAPagarTextField!=null&&!valorAPagarTextField.equals(""))
+        if(domain.encontrarReciboPagar(datos.getEstudianteSeleccionado(),Integer.parseInt(identificacionTxtField.getText()))!=null)
         {
             nombreEstudianteTextField.setText(datos.getEstudianteSeleccionado().getNombre());
             codigoTextField.setText(datos.getEstudianteSeleccionado().getId());
+            valorAPagarTextField.setText("300");
+        }
+        else
+        {
+            nombreEstudianteTextField.setText("");
+            codigoTextField.setText("");
+            valorAPagarTextField.setText("");
         }
     }
 
 
     public void pagarOnAction(ActionEvent actionEvent) {
-
+        if(!nombreEstudianteTextField.getText().isEmpty() && !codigoTextField.getText().isEmpty() && !valorAPagarTextField.getText().isEmpty())
+        {
+            domain.pagarRecibo(datos.getEstudianteSeleccionado(),Integer.parseInt(identificacionTxtField.getText()));
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText("Informacion");
+            alert.setContentText("Su recibo fue pagado exitosamente");
+            alert.show();
+        }
+        else
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Alerta");
+            alert.setContentText("El recibo de pago no existe");
+            alert.show();
+        }
     }
 }

@@ -106,19 +106,16 @@ public class Domain {
         }
     }
 
-    public void pagarRecibo(int numeroReferencia) {
-        for(int i=0;i<factorySAC.sac.factoryEstudiante.Estudiantes.size();i++)
+    public void pagarRecibo(Estudiante estudiante,int numeroReferencia) {
+        for(int i=0;i<estudiante.getListaRecibosPago().size();i++)
         {
-            for(int j=0;i<factorySAC.sac.factoryEstudiante.Estudiantes.get(i).listaRecibosPago.size();j++)
+
+            if(estudiante.getListaRecibosPago().get(i).getNumeroReferencia()==numeroReferencia&&estudiante.getListaRecibosPago().get(i).getEstadoRecibo()==EstadoRecibo.GENERADO)
             {
-                if(factorySAC.sac.factoryEstudiante.Estudiantes.get(i).listaRecibosPago.get(j).numeroReferencia==numeroReferencia)
-                {
-                    factorySAC.sac.factoryEstudiante.Estudiantes.get(i).listaRecibosPago.get(j).estadoRecibo= EstadoRecibo.PAGADO;
-                    factorySAC.sac.factoryEstudiante.Estudiantes.get(i).listaRecibosPago.get(j).fechaPago= LocalDate.now();
-                    factorySAC.sac.factoryEstudiante.Estudiantes.get(i).listaRecibosPago.get(j).fechaVencimiento=null;
-                    j=factorySAC.sac.factoryEstudiante.Estudiantes.get(i).listaRecibosPago.size();
-                    i=factorySAC.sac.factoryEstudiante.Estudiantes.size();
-                }
+                estudiante.getListaRecibosPago().get(i).setEstadoRecibo(EstadoRecibo.PAGADO);
+                estudiante.getListaRecibosPago().get(i).fechaPago= LocalDate.now();
+                estudiante.getListaRecibosPago().get(i).fechaVencimiento=null;
+                i=estudiante.getListaRecibosPago().size();
             }
         }
     }
