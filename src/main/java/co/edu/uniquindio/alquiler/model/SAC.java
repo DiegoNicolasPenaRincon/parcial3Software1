@@ -17,7 +17,7 @@ public class SAC {
     public SAC() {
 
 
-       /* //Se instancian los bancos
+       //Se instancian los bancos
 
         Banco banco1=new Banco("Bancolombia");
         Banco banco2=new Banco("Nequi");
@@ -55,10 +55,9 @@ public class SAC {
 
         factoryMateria.listaMaterias.add(materia1);
 
-        */
 
 
-        conexionBD.conectarBDSoftware2();
+        //conexionBD.conectarBDSoftware2();
 
     }
 

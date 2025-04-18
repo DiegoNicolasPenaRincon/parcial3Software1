@@ -24,11 +24,13 @@ import java.time.LocalDate;
 public class SACController {
 
     @FXML
+    Button visualizarButton;
+    @FXML
     Button eliminarButton;
     @FXML
     TableView<ReciboPago> recibosPagoTable;
     @FXML
-    TableColumn<ReciboPago,String> nombreEstColumn;
+    TableColumn<ReciboPago,String> IDEstColumn;
     @FXML
     TableColumn<ReciboPago,String> estadoReciboColumn;
     @FXML
@@ -92,7 +94,7 @@ public class SACController {
         codigoMateriaColumn.setCellValueFactory( cellData -> new SimpleStringProperty( cellData.getValue().getCodigo()));
         definitivaColumn.setCellValueFactory( cellData -> new SimpleStringProperty( String.valueOf(cellData.getValue().getNotaDefinitiva()) ) );
 
-        nombreEstColumn.setCellValueFactory( cellData -> new SimpleStringProperty( cellData.getValue().getNombreEstudiante()));
+        IDEstColumn.setCellValueFactory( cellData -> new SimpleStringProperty( cellData.getValue().getIDestudiante()));
         estadoReciboColumn.setCellValueFactory( cellData -> new SimpleStringProperty( String.valueOf(cellData.getValue().getEstadoRecibo()) ) );
         valorReciboColumn.setCellValueFactory( cellData -> new SimpleStringProperty( cellData.getValue().getValorPagar()+""));;
         numeroReferenciaColumn.setCellValueFactory( cellData -> new SimpleStringProperty( cellData.getValue().getNumeroReferencia()+""));
