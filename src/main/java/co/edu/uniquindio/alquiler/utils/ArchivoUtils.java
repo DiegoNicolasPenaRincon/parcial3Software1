@@ -156,4 +156,20 @@ public class ArchivoUtils {
         return objeto;
     }
 
+    public static void crearYEscribirArchivo(String nombreArchivo, String contenido) {
+        File archivoBacano=new File("src/main/resources/ArchivosHTMl/"+nombreArchivo+".html");
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(archivoBacano))) {
+            writer.write(contenido);
+        }
+        catch (IOException e)
+        {
+            e.getMessage();
+        }
+    }
+
+    public static void eliminarArchivoHTML(String nombreArchivo) {
+        File archivo=new File("src/main/resources/ArchivosHTMl/"+nombreArchivo+".html");
+        archivo.delete();
+    }
+
 }

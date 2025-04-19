@@ -4,6 +4,9 @@ import co.edu.uniquindio.alquiler.enums.EstadoRecibo;
 import co.edu.uniquindio.alquiler.exceptions.PromedioBajoException;
 import co.edu.uniquindio.alquiler.exceptions.ReciboExistenteException;
 
+import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -118,6 +121,18 @@ public class Domain {
                 estudiante.getListaRecibosPago().get(i).fechaVencimiento=null;
                 i=estudiante.getListaRecibosPago().size();
             }
+        }
+    }
+
+    public void ejecutarArchivoHtml(String rutaArchivo)  {
+        File archivoHTML = new File(rutaArchivo+".html");
+        try
+        {
+            Desktop.getDesktop().browse(archivoHTML.toURI());
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
         }
     }
 

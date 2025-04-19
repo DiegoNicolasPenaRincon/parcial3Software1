@@ -4,6 +4,7 @@ import co.edu.uniquindio.alquiler.enums.EstadoRecibo;
 import co.edu.uniquindio.alquiler.exceptions.PromedioBajoException;
 import co.edu.uniquindio.alquiler.exceptions.ReciboExistenteException;
 import co.edu.uniquindio.alquiler.model.*;
+import co.edu.uniquindio.alquiler.utils.ArchivoUtils;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -22,6 +23,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.Formatter;
 
 public class SACController {
 
@@ -229,6 +231,8 @@ public class SACController {
                 alert.setHeaderText("Informacion");
                 alert.setContentText("Su recibo de pago fue eliminado exitosamente");
                 alert.show();
+
+                eliminarArchivoHTM(reciboPagoEliminar);
             }
         }
         else
@@ -241,10 +245,22 @@ public class SACController {
     }
 
     public void visualizarOnAction(ActionEvent actionEvent) {
-
+        ReciboPago reciboPagoSeleccionado=recibosPagoTable.getSelectionModel().getSelectedItem();
+        if(reciboPagoSeleccionado!=null)
+        {
+            domain.ejecutarArchivoHtml("src/main/resources/ArchivosHTMl/"+"reciboPagoDE;"+datos.getEstudianteSeleccionado().getId()+"NumeroRef;"+reciboPagoSeleccionado.getNumeroReferencia());
+            System.out.print("src/main/resources/ArchivosHTMl/"+"reciboPagoDE;"+datos.getEstudianteSeleccionado().getId()+"NumeroRef;"+reciboPagoSeleccionado.getNumeroReferencia());
+        }
+        else
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Alerta");
+            alert.setContentText("No ha seleccionado ningun recibo de pago para visualizar");
+            alert.show();
+        }
     }
 
-    public void crearArchivoHTMLReciboPago(ReciboPago reciboPagoVisualizar) throws IOException {
+    public void crearArchivoHTMLReciboPago(ReciboPago reciboPagoCrear) throws IOException {
         String reciboPago="<!DOCTYPE html>\n" +
                     "<html lang=\"es\">\n" +
                     "<head>\n" +
@@ -317,15 +333,15 @@ public class SACController {
                     "      </tr>\n" +
                     "      <tr>\n" +
                     "        <td><strong>Programa:</strong></td>\n" +
-                    "        <td>"+reciboPagoVisualizar.getProgramaPerteneciente()+"</td>\n" +
+                    "        <td>"+reciboPagoCrear.getProgramaPerteneciente()+"</td>\n" +
                     "      </tr>\n" +
                     "      <tr>\n" +
                     "        <td><strong>Fecha de Expedición:</strong></td>\n" +
-                    "        <td>"+reciboPagoVisualizar.getFechaExpedicion().toString()+"</td>\n" +
+                    "        <td>"+reciboPagoCrear.getFechaExpedicion().toString()+"</td>\n" +
                     "      </tr>\n" +
                     "      <tr>\n" +
                     "        <td><strong>Fecha de Vencimiento:</strong></td>\n" +
-                    "        <td>"+reciboPagoVisualizar.getFechaVencimiento().toString()+"</td>\n" +
+                    "        <td>"+reciboPagoCrear.getFechaVencimiento().toString()+"</td>\n" +
                     "      </tr>\n" +
                     "    </table>\n" +
                     "\n" +
@@ -337,10 +353,10 @@ public class SACController {
                     "        <th>Estado</th>\n" +
                     "      </tr>\n" +
                     "      <tr>\n" +
-                    "        <td>"+reciboPagoVisualizar.getNumeroReferencia()+"</td>\n" +
-                    "        <td>"+reciboPagoVisualizar.getNombreMateria()+"</td>\n" +
-                    "        <td class=\"valor\">"+reciboPagoVisualizar.getValorPagar()+"</td>\n" +
-                    "        <td>"+reciboPagoVisualizar.getEstadoRecibo().toString()+"</td>\n" +
+                    "        <td>"+reciboPagoCrear.getNumeroReferencia()+"</td>\n" +
+                    "        <td>"+reciboPagoCrear.getNombreMateria()+"</td>\n" +
+                    "        <td class=\"valor\">"+reciboPagoCrear.getValorPagar()+"</td>\n" +
+                    "        <td>"+reciboPagoCrear.getEstadoRecibo().toString()+"</td>\n" +
                     "      </tr>\n" +
                     "    </table>\n" +
                     "\n" +
@@ -358,9 +374,12 @@ public class SACController {
                     "\n" +
                     "</html>";
 
-        FileWriter fw = new FileWriter("src/main/resources/ArchivosHTMl", true);
-        BufferedWriter bw = new BufferedWriter(fw);
-        bw.write(reciboPago);
+        ArchivoUtils.crearYEscribirArchivo("reciboPagoDE;"+datos.getEstudianteSeleccionado().getId()+"NumeroRef;"+reciboPagoCrear.getNumeroReferencia(),reciboPago);
+    }
+
+    public void eliminarArchivoHTM(ReciboPago reciboPagoEliminar) {
+        String nombreArchivo="reciboPagoDE;"+datos.getEstudianteSeleccionado().getId()+"NumeroRef;"+reciboPagoEliminar.getNumeroReferencia();
+        ArchivoUtils.eliminarArchivoHTML(nombreArchivo);
     }
 
 
