@@ -124,7 +124,7 @@ public class SAC {
 
         String metodoInsertarEstudiante1="INSERT INTO Estudiantes(Nicolas,12345678,Hola,☻";
         String metodoInsertarEstudiante2="INSERT INTO Estudiantes(Diana,12345679,Adios,▲";
-        
+
          */
 
     }

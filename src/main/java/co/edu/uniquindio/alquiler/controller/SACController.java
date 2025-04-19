@@ -89,6 +89,7 @@ public class SACController {
         otrosDerechosLabel.setVisible(false);
         actualizarListaRecibos.setVisible(false);
         eliminarButton.setVisible(false);
+        visualizarButton.setVisible(false);
 
         nombreMateriaColumn.setCellValueFactory( cellData -> new SimpleStringProperty( cellData.getValue().getNombre()));
         codigoMateriaColumn.setCellValueFactory( cellData -> new SimpleStringProperty( cellData.getValue().getCodigo()));
@@ -113,6 +114,7 @@ public class SACController {
         otrosDerechosLabel.setVisible(false);
         actualizarListaRecibos.setVisible(false);
         eliminarButton.setVisible(false);
+        visualizarButton.setVisible(false);
     }
 
     public void otrosDerechosAction(ActionEvent actionEvent) {
@@ -123,6 +125,7 @@ public class SACController {
         otrosDerechosLabel.setVisible(true);
         actualizarListaRecibos.setVisible(true);
         eliminarButton.setVisible(true);
+        visualizarButton.setVisible(true);
         recibosPagoTable.refresh();
     }
 
@@ -231,6 +234,6 @@ public class SACController {
     }
 
     public void visualizarOnAction(ActionEvent actionEvent) {
-
+        
     }
 }
