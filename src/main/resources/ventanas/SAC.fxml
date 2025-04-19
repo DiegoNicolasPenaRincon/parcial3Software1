@@ -17,11 +17,8 @@
          <image>
             <Image url="@../Imagenes/Uniqlog.png" />
          </image></ImageView>
-      <Circle fx:id="circulo1" fill="#2db23f" layoutX="25.0" layoutY="187.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fx:id="circulo2" fill="#2db23f" layoutX="25.0" layoutY="228.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
       <Line fx:id="barra2" endX="228.0" layoutX="108.0" layoutY="165.0" startX="-108.0" />
       <Line fx:id="barra1" endX="-67.5" endY="333.79290771484375" layoutX="404.0" layoutY="262.0" startX="-67.5" startY="-96.5" />
-      <Circle fx:id="circulo3" fill="#2db23f" layoutX="25.0" layoutY="273.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
       <TableView fx:id="materiasTable" layoutX="455.0" layoutY="195.0" prefHeight="272.0" prefWidth="226.0" visible="false">
         <columns>
           <TableColumn fx:id="nombreMateriaColumn" prefWidth="75.0" text="Nombre" />
@@ -51,5 +48,29 @@
       <Button fx:id="CerrarSesionButton" layoutX="681.0" layoutY="16.0" mnemonicParsing="false" onAction="#cerrarSesionOnAction" text="Cerrar sesion" />
       <Button fx:id="visualizarButton" layoutX="628.0" layoutY="442.0" mnemonicParsing="false" onAction="#visualizarOnAction" prefHeight="25.0" prefWidth="67.0" text="VIsualizar" />
       <Button fx:id="eliminarButton" layoutX="434.0" layoutY="442.0" mnemonicParsing="false" onAction="#eliminarButtonOnAction" text="Eliminar" />
+      <Label fx:id="signoInterrogacionNovedadesNotasLbl" layoutX="16.0" layoutY="174.0" prefHeight="27.0" prefWidth="18.0" text="¿?" textFill="#2db23f">
+         <font>
+            <Font size="18.0" />
+         </font>
+          <tooltip>
+              <Tooltip text="Permite a los estudiantes ver las materias que esta cursando en el semestre, ademas de sus notas" />
+          </tooltip>
+      </Label>
+      <Label fx:id="signoInterrogacionOtrosDerechosLbl" layoutX="11.0" layoutY="220.0" text="¿?" textFill="#2db23f">
+         <font>
+            <Font size="18.0" />
+         </font>
+          <tooltip>
+              <Tooltip text="Permite ver la informacion de los recibos de pago de los estudiantes" />
+          </tooltip>
+      </Label>
+      <Label fx:id="signoInterrogacionPagosEnLineaLbl" layoutX="11.0" layoutY="264.0" text="¿?" textFill="#2db23f">
+         <font>
+            <Font size="18.0" />
+         </font>
+          <tooltip>
+              <Tooltip text="Permite pagar los recibos generados por los estudiantes" />
+          </tooltip>
+      </Label>
    </children>
 </AnchorPane>

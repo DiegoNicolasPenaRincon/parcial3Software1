@@ -60,15 +60,15 @@ public class SACController {
     @FXML
     ImageView logoImgView;
     @FXML
-    Circle circulo1;
+    Label signoInterrogacionNovedadesNotasLbl;
     @FXML
-    Circle circulo2;
+    Label signoInterrogacionOtrosDerechosLbl;
     @FXML
     Line barra2;
     @FXML
     Line barra1;
     @FXML
-    Circle circulo3;
+    Label signoInterrogacionPagosEnLineaLbl;
     @FXML
     TableView<Materia> materiasTable;
     @FXML
