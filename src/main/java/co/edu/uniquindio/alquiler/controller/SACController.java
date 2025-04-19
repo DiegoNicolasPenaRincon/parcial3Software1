@@ -18,6 +18,8 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.stage.Stage;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 
@@ -177,7 +179,7 @@ public class SACController {
         if(materiaSeleccionada!=null)
         {
             LocalDate fecha=LocalDate.now();
-            ReciboPago reciboPago=new ReciboPago(estudianteSesionIniciada.getId(), EstadoRecibo.GENERADO, fecha,null,domain.factorySAC.getSac().fechaCierrePlataforma,materiaSeleccionada.getNombre(), (int) (Math.random() * 900) + 100);
+            ReciboPago reciboPago=new ReciboPago(estudianteSesionIniciada.getId(), EstadoRecibo.GENERADO, fecha,null,domain.factorySAC.getSac().fechaCierrePlataforma,materiaSeleccionada.getNombre(), (int) (Math.random() * 900) + 100,materiaSeleccionada.getProgramaPerteneciente());
             try
             {
                 domain.agregarRecibodePago(estudianteSesionIniciada,reciboPago,materiaSeleccionada);
@@ -185,6 +187,7 @@ public class SACController {
                 alert.setHeaderText("Informacion");
                 alert.setContentText("Su recibo acaba de ser generado");
                 alert.show();
+                crearArchivoHTMLReciboPago(reciboPago);
             }
             catch (PromedioBajoException e)
             {
@@ -192,6 +195,10 @@ public class SACController {
                 alert.setHeaderText("Alerta");
                 alert.setContentText(e.getMessage());
                 alert.show();
+            }
+            catch (IOException e)
+            {
+                throw new RuntimeException(e);
             }
         }
         else
@@ -236,4 +243,125 @@ public class SACController {
     public void visualizarOnAction(ActionEvent actionEvent) {
 
     }
+
+    public void crearArchivoHTMLReciboPago(ReciboPago reciboPagoVisualizar) throws IOException {
+        String reciboPago="<!DOCTYPE html>\n" +
+                    "<html lang=\"es\">\n" +
+                    "<head>\n" +
+                    "  <meta charset=\"UTF-8\">\n" +
+                    "  <title>Recibo de Pago - Universidad del Quindío</title>\n" +
+                    "  <style>\n" +
+                    "    body {\n" +
+                    "      font-family: Arial, sans-serif;\n" +
+                    "      margin: 40px;\n" +
+                    "      background-color: #f8f8f8;\n" +
+                    "    }\n" +
+                    "    .recibo {\n" +
+                    "      background: white;\n" +
+                    "      padding: 30px;\n" +
+                    "      max-width: 800px;\n" +
+                    "      margin: auto;\n" +
+                    "      border: 1px solid #ccc;\n" +
+                    "    }\n" +
+                    "    .encabezado {\n" +
+                    "      text-align: center;\n" +
+                    "      margin-bottom: 30px;\n" +
+                    "    }\n" +
+                    "    .encabezado img {\n" +
+                    "      width: 80px;\n" +
+                    "    }\n" +
+                    "    .titulo {\n" +
+                    "      font-size: 22px;\n" +
+                    "      font-weight: bold;\n" +
+                    "      margin-top: 10px;\n" +
+                    "    }\n" +
+                    "    .datos, .detalle {\n" +
+                    "      margin-bottom: 20px;\n" +
+                    "    }\n" +
+                    "    .datos td, .detalle td {\n" +
+                    "      padding: 5px 10px;\n" +
+                    "    }\n" +
+                    "    .detalle th {\n" +
+                    "      background-color: #eee;\n" +
+                    "      padding: 10px;\n" +
+                    "    }\n" +
+                    "    .valor {\n" +
+                    "      font-weight: bold;\n" +
+                    "      color: green;\n" +
+                    "    }\n" +
+                    "    .footer {\n" +
+                    "      margin-top: 30px;\n" +
+                    "      font-size: 12px;\n" +
+                    "      text-align: center;\n" +
+                    "      color: gray;\n" +
+                    "    }\n" +
+                    "  </style>\n" +
+                    "</head>\n" +
+                    "<body>\n" +
+                    "\n" +
+                    "  <div class=\"recibo\">\n" +
+                    "    <div class=\"encabezado\">\n" +
+                    "      <img src=\"src\\main\\resources\\Imagenes\\Uniqlog.png\" alt=\"Escudo\">\n" +
+                    "      <div class=\"titulo\">Universidad del Quindío</div>\n" +
+                    "      <div>Recibo de Pago Estudiantil</div>\n" +
+                    "    </div>\n" +
+                    "\n" +
+                    "    <table class=\"datos\">\n" +
+                    "      <tr>\n" +
+                    "        <td><strong>Nombre del estudiante:</strong></td>\n" +
+                    "        <td>"+datos.getEstudianteSeleccionado().getNombre()+"</td>\n" +
+                    "      </tr>\n" +
+                    "      <tr>\n" +
+                    "        <td><strong>ID Estudiante:</strong></td>\n" +
+                    "        <td>"+datos.getEstudianteSeleccionado().getId()+"</td>\n" +
+                    "      </tr>\n" +
+                    "      <tr>\n" +
+                    "        <td><strong>Programa:</strong></td>\n" +
+                    "        <td>"+reciboPagoVisualizar.getProgramaPerteneciente()+"</td>\n" +
+                    "      </tr>\n" +
+                    "      <tr>\n" +
+                    "        <td><strong>Fecha de Expedición:</strong></td>\n" +
+                    "        <td>"+reciboPagoVisualizar.getFechaExpedicion().toString()+"</td>\n" +
+                    "      </tr>\n" +
+                    "      <tr>\n" +
+                    "        <td><strong>Fecha de Vencimiento:</strong></td>\n" +
+                    "        <td>"+reciboPagoVisualizar.getFechaVencimiento().toString()+"</td>\n" +
+                    "      </tr>\n" +
+                    "    </table>\n" +
+                    "\n" +
+                    "    <table class=\"detalle\" width=\"100%\" border=\"1\" cellspacing=\"0\">\n" +
+                    "      <tr>\n" +
+                    "        <th>Referencia</th>\n" +
+                    "        <th>Materia</th>\n" +
+                    "        <th>Valor a Pagar</th>\n" +
+                    "        <th>Estado</th>\n" +
+                    "      </tr>\n" +
+                    "      <tr>\n" +
+                    "        <td>"+reciboPagoVisualizar.getNumeroReferencia()+"</td>\n" +
+                    "        <td>"+reciboPagoVisualizar.getNombreMateria()+"</td>\n" +
+                    "        <td class=\"valor\">"+reciboPagoVisualizar.getValorPagar()+"</td>\n" +
+                    "        <td>"+reciboPagoVisualizar.getEstadoRecibo().toString()+"</td>\n" +
+                    "      </tr>\n" +
+                    "    </table>\n" +
+                    "\n" +
+                    "    <div class=\"footer\">\n" +
+                    "      Este documento es válido solo para efectos informativos. Para pagar, diríjase al banco autorizado con este recibo impreso o \tacceda a la opcion de pagos en linea que ofrece la plataforma SAC.<br>\n" +
+                    "      Universidad del Quindío - Armenia, Quindío, Colombia\n" +
+                    "    </div>\n" +
+                    "  </div>\n" +
+                    "\n" +
+                    "</body>\n" +
+                    "\n" +
+                    "<a href=\"recibo_pago.html\" download=\"Recibo_UQ.html\">\n" +
+                    "  <button>Descargar Recibo HTML</button>\n" +
+                    "</a>\n" +
+                    "\n" +
+                    "</html>";
+
+        FileWriter fw = new FileWriter("src/main/resources/ArchivosHTMl", true);
+        BufferedWriter bw = new BufferedWriter(fw);
+        bw.write(reciboPago);
+    }
+
+
 }

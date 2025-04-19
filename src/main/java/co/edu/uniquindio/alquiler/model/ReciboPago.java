@@ -14,8 +14,9 @@ public class ReciboPago {
     LocalDate fechaVencimiento;
     String nombreMateria;
     int numeroReferencia;
+    String programaPerteneciente;
 
-    public ReciboPago(String IDestudiante, EstadoRecibo estadoRecibo, LocalDate fechaExpedicion, LocalDate fechaPago, LocalDate fechaVencimiento,String nombreMateria,int numeroReferencia) {
+    public ReciboPago(String IDestudiante, EstadoRecibo estadoRecibo, LocalDate fechaExpedicion, LocalDate fechaPago, LocalDate fechaVencimiento,String nombreMateria,int numeroReferencia,String programaPerteneciente) {
         this.IDestudiante = IDestudiante;
         this.estadoRecibo = estadoRecibo;
         this.fechaExpedicion = fechaExpedicion;
@@ -23,6 +24,7 @@ public class ReciboPago {
         this.fechaVencimiento = fechaVencimiento;
         this.nombreMateria = nombreMateria;
         this.numeroReferencia = numeroReferencia;
+        this.programaPerteneciente = programaPerteneciente;
     }
 
     public String getIDestudiante() {
@@ -85,4 +87,11 @@ public class ReciboPago {
         this.numeroReferencia = numeroReferencia;
     }
 
+    public String getProgramaPerteneciente() {
+        return programaPerteneciente;
+    }
+
+    public void setProgramaPerteneciente(String programaPerteneciente) {
+        this.programaPerteneciente = programaPerteneciente;
+    }
 }
