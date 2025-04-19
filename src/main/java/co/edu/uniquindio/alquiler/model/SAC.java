@@ -27,7 +27,7 @@ public class SAC {
         //Se instancian los estudiantes
 
         Estudiante estudiante1=new Estudiante("Nicolas","12345678","Hola","☻");
-        //Estudiante estudiante2=new Estudiante("Diana","12345679","Adios","☻");
+        Estudiante estudiante2=new Estudiante("Diana","12345679","Adios","☻");
 
         //Se instancian las materias
 
@@ -72,6 +72,61 @@ public class SAC {
             centinela++;
         }
         return definitiva=definitiva/centinela;
+    }
+
+    public void insertarDatos() {
+
+        Banco banco1=new Banco("Bancolombia");
+        Banco banco2=new Banco("Nequi");
+
+        Estudiante estudiante1=new Estudiante("Nicolas","12345678","Hola","☻");
+        Estudiante estudiante2=new Estudiante("Diana","12345679","Adios","▲");
+
+        Materia materia1=new Materia("Ingenieria de sistemas","Estructura de datos","123");
+        materia1.listaNotas.add(5.0);
+        materia1.listaNotas.add(3.0);
+        materia1.listaNotas.add(2.0);
+        materia1.listaNotas.add(1.5);
+        double definitiva1=materia1.notaDefinitiva=calcularDefinitiva(materia1.listaNotas);
+
+        Materia materia2=new Materia("Ingenieria de sistemas","Ingenieria de software 2","456");
+        materia2.listaNotas.add(5.0);
+        materia2.listaNotas.add(1.0);
+        materia2.listaNotas.add(0.8);
+        materia2.listaNotas.add(0.5);
+        double definitiva2=materia2.notaDefinitiva=calcularDefinitiva(materia2.listaNotas);
+
+        Materia materia3=new Materia("Ingenieria de sistemas","Calculo vectorial","789");
+        materia3.listaNotas.add(2.0);
+        materia3.listaNotas.add(3.0);
+        materia3.listaNotas.add(1.0);
+        materia3.listaNotas.add(1.5);
+        double definitiva3=materia3.notaDefinitiva=calcularDefinitiva(materia3.listaNotas);
+
+        Materia materia4=new Materia("Ingenieria de sistemas","Matematicas discretas","012");
+        materia4.listaNotas.add(5.0);
+        materia4.listaNotas.add(5.0);
+        materia4.listaNotas.add(3.0);
+        materia4.listaNotas.add(5.0);
+        double definitiva4=materia4.notaDefinitiva=calcularDefinitiva(materia4.listaNotas);
+
+        /*String metodoInsertarMateria1="INSERT INTO Materias(Estructura de datos,123,Ingenieria de sistemas) VALUES(?,?,?)";
+        String metodoInsertarMateria2="INSERT INTO Materias(Ingenieria de software 2,456,Ingenieria de sistemas) VALUES(?,?,?)";
+        String metodoInsertarMateria3="INSERT INTO Materias(Calculo vectorial,789,Ingenieria de sistemas) VALUES(?,?,?)";
+        String metodoInsertarMateria4="INSERT INTO Materias(Matematicas discretas,012,Ingenieria de sistemas) VALUES(?,?,?)";
+
+        String metodoInsertarNotas1="INSERT INTO Notas(5.0,3.0,2.0,1.5,"+definitiva1+") VALUES(?,?,?,?)";
+        String metodoInsertarNotas2="INSERT INTO Notas(5.0,1.0,0.8,0.5,"+definitiva2+") VALUES(?,?,?,?)";
+        String metodoInsertarNotas3="INSERT INTO Notas(1.0,2.0,1.0,1.5,"+definitiva3+") VALUES(?,?,?,?)";
+        String metodoInsertarNotas4="INSERT INTO Notas(5.0,5.0,3.0,5.0,"+definitiva4+") VALUES(?,?,?,?)";
+
+        //String agregarNuevaNota="INSERT INTO Materias()"
+
+        String metodoInsertarEstudiante1="INSERT INTO Estudiantes(Nicolas,12345678,Hola,☻";
+        String metodoInsertarEstudiante2="INSERT INTO Estudiantes(Diana,12345679,Adios,▲";
+        
+         */
+
     }
 
 
