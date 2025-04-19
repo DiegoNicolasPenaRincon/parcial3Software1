@@ -6,7 +6,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="594.0" prefWidth="787.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.alquiler.controller.SACController">
+<AnchorPane prefHeight="597.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.alquiler.controller.SACController">
    <children>
       <Label fx:id="solicitudNovedadesLbl" layoutX="447.0" layoutY="111.0" text="Solicitud de novedades de notas" textFill="#2db23f" visible="false">
          <font>
@@ -36,7 +36,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <TableView fx:id="recibosPagoTable" layoutX="352.0" layoutY="179.0" prefHeight="240.0" prefWidth="429.0">
+      <TableView fx:id="recibosPagoTable" layoutX="352.0" layoutY="179.0" prefHeight="240.0" prefWidth="429.0" visible="false">
         <columns>
           <TableColumn fx:id="IDEstColumn" prefWidth="128.0" text="ID estudiante" />
           <TableColumn fx:id="estadoReciboColumn" prefWidth="95.0" text="Estado recibo" />
@@ -45,7 +45,7 @@
         </columns>
       </TableView>
       <Button fx:id="actualizarListaRecibos" layoutX="525.0" layoutY="442.0" mnemonicParsing="false" onAction="#actualizarListaRecibosOnAction" text="Actualizar" />
-      <Button fx:id="CerrarSesionButton" layoutX="681.0" layoutY="16.0" mnemonicParsing="false" onAction="#cerrarSesionOnAction" text="Cerrar sesion" />
+      <Button fx:id="CerrarSesionButton" layoutX="831.0" layoutY="16.0" mnemonicParsing="false" onAction="#cerrarSesionOnAction" text="Cerrar sesion" />
       <Button fx:id="visualizarButton" layoutX="628.0" layoutY="442.0" mnemonicParsing="false" onAction="#visualizarOnAction" prefHeight="25.0" prefWidth="67.0" text="VIsualizar" />
       <Button fx:id="eliminarButton" layoutX="434.0" layoutY="442.0" mnemonicParsing="false" onAction="#eliminarButtonOnAction" text="Eliminar" />
       <Label fx:id="signoInterrogacionNovedadesNotasLbl" layoutX="16.0" layoutY="174.0" prefHeight="27.0" prefWidth="18.0" text="¿?" textFill="#2db23f">
@@ -72,5 +72,17 @@
               <Tooltip text="Permite pagar los recibos generados por los estudiantes" />
           </tooltip>
       </Label>
+      <Button fx:id="revisarNotasButton" layoutX="468.0" layoutY="530.0" mnemonicParsing="false" onAction="#revisarNotasOnAction" prefHeight="25.0" prefWidth="218.0" text="Revisar listado de notas" />
+      <TableView fx:id="notasTable" layoutX="352.0" layoutY="191.0" prefHeight="200.0" prefWidth="528.0">
+        <columns>
+          <TableColumn fx:id="codigoNotasColumn" prefWidth="75.0" text="Codigo" />
+          <TableColumn fx:id="nombreNotasColumn" prefWidth="75.0" text="Nombre" />
+            <TableColumn fx:id="nota1Column" prefWidth="75.0" text="Nota 1" />
+            <TableColumn fx:id="nota2Column" prefWidth="75.0" text="Nota 2" />
+            <TableColumn fx:id="nota3Column" prefWidth="75.0" text="Nota 3" />
+            <TableColumn fx:id="nota4Column" prefWidth="75.0" text="Nota 4" />
+            <TableColumn fx:id="definitivaNotasColumn" prefWidth="75.0" text="Definitiva" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>

@@ -28,6 +28,24 @@ import java.util.Formatter;
 public class SACController {
 
     @FXML
+    public TableColumn<Materia,String> codigoNotasColumn;
+    @FXML
+    public TableColumn<Materia,String> nombreNotasColumn;
+    @FXML
+    public TableColumn<Materia,String> nota1Column;
+    @FXML
+    public TableColumn<Materia,String> nota2Column;
+    @FXML
+    public TableColumn<Materia,String> nota3Column;
+    @FXML
+    public TableColumn<Materia,String> nota4Column;
+    @FXML
+    public TableColumn<Materia,String> definitivaNotasColumn;
+    @FXML
+    public TableView<Materia> notasTable;
+    @FXML
+    Button revisarNotasButton;
+    @FXML
     Button visualizarButton;
     @FXML
     Button eliminarButton;
@@ -94,6 +112,8 @@ public class SACController {
         actualizarListaRecibos.setVisible(false);
         eliminarButton.setVisible(false);
         visualizarButton.setVisible(false);
+        revisarNotasButton.setVisible(false);
+        notasTable.setVisible(false);
 
         nombreMateriaColumn.setCellValueFactory( cellData -> new SimpleStringProperty( cellData.getValue().getNombre()));
         codigoMateriaColumn.setCellValueFactory( cellData -> new SimpleStringProperty( cellData.getValue().getCodigo()));
@@ -104,9 +124,18 @@ public class SACController {
         valorReciboColumn.setCellValueFactory( cellData -> new SimpleStringProperty( cellData.getValue().getValorPagar()+""));;
         numeroReferenciaColumn.setCellValueFactory( cellData -> new SimpleStringProperty( cellData.getValue().getNumeroReferencia()+""));
 
+        codigoNotasColumn.setCellValueFactory(cellData -> new SimpleStringProperty( String.valueOf(cellData.getValue().getCodigo())));
+        nombreNotasColumn.setCellValueFactory(cellData -> new SimpleStringProperty( cellData.getValue().getNombre()));
+        nota1Column.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getListaNotas().get(0))));
+        nota2Column.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getListaNotas().get(1))));
+        nota3Column.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getListaNotas().get(2))));
+        nota4Column.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getListaNotas().get(3))));
+        definitivaNotasColumn.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getNotaDefinitiva())));
+
 
         this.materiasTable.setItems(FXCollections.observableList(estudianteSesionIniciada.getListaMaterias()));
         this.recibosPagoTable.setItems(FXCollections.observableList(estudianteSesionIniciada.getListaRecibosPago()));
+        this.notasTable.setItems(FXCollections.observableList(estudianteSesionIniciada.getListaMaterias()));
 
     }
 
@@ -119,6 +148,8 @@ public class SACController {
         actualizarListaRecibos.setVisible(false);
         eliminarButton.setVisible(false);
         visualizarButton.setVisible(false);
+        revisarNotasButton.setVisible(true);
+        notasTable.setVisible(false);
     }
 
     public void otrosDerechosAction(ActionEvent actionEvent) {
@@ -130,6 +161,8 @@ public class SACController {
         actualizarListaRecibos.setVisible(true);
         eliminarButton.setVisible(true);
         visualizarButton.setVisible(true);
+        revisarNotasButton.setVisible(false);
+        notasTable.setVisible(false);
         recibosPagoTable.refresh();
     }
 
@@ -383,4 +416,15 @@ public class SACController {
     }
 
 
+    public void revisarNotasOnAction(ActionEvent actionEvent) {
+        notasTable.setVisible(true);
+        revisarNotasButton.setVisible(false);
+        solicitarPermisoButton.setVisible(false);
+        eliminarButton.setVisible(false);
+        visualizarButton.setVisible(false);
+        revisarNotasButton.setVisible(false);
+        recibosPagoTable.setVisible(false);
+        materiasTable.setVisible(false);
+        visualizarButton.setVisible(false);
+    }
 }
