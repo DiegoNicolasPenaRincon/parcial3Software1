@@ -71,6 +71,7 @@ public class pagosEnLineaController {
         if(!nombreEstudianteTextField.getText().isEmpty() && !codigoTextField.getText().isEmpty() && !valorAPagarTextField.getText().isEmpty())
         {
             domain.pagarRecibo(datos.getEstudianteSeleccionado(),Integer.parseInt(identificacionTxtField.getText()));
+            domain.factorySAC.getSac().solicitudGenerada(datos.getEstudianteSeleccionado().getCorreoEstudiante(),"Su recibo de pago con numero de referencia: "+identificacionTxtField.getText()+" ha sido pagado exitosamente.");
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setHeaderText("Informacion");
             alert.setContentText("Su recibo fue pagado exitosamente");

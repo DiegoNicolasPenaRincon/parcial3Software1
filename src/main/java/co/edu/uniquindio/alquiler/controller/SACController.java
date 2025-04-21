@@ -265,11 +265,11 @@ public class SACController {
             {
                 domain.eliminarReciboPago(estudianteSesionIniciada, reciboPagoEliminar);
                 recibosPagoTable.refresh();
+                domain.factorySAC.getSac().solicitudGenerada(datos.getEstudianteSeleccionado().getCorreoEstudiante(),"Su recibo de pago con numero de referencia: "+reciboPagoEliminar.getNumeroReferencia()+" ha sido eliminado exitosamente.");
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setHeaderText("Informacion");
                 alert.setContentText("Su recibo de pago fue eliminado exitosamente");
                 alert.show();
-
                 eliminarArchivoHTM(reciboPagoEliminar);
             }
         }
