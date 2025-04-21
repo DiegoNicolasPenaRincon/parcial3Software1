@@ -34,7 +34,7 @@ public class SAC {
 
         //Se instancian los estudiantes
 
-        Estudiante estudiante1=new Estudiante("Nicolas","12345678","Hola","☻","diegonicolaspenarincon@gmail.com");
+        Estudiante estudiante1=new Estudiante("Nicolas","12345678","Hola","☻","carlosf.corralesz@uqvirtual.edu.co");
         Estudiante estudiante2=new Estudiante("Diana","12345679","Adios","☻","carlosf.corralesz@uqvirtual.edu.co");
 
         //Se instancian las materias
