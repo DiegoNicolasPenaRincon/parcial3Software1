@@ -2,9 +2,13 @@ package co.edu.uniquindio.alquiler.model;
 
 import co.edu.uniquindio.alquiler.enums.EstadoRecibo;
 import db.Conexion;
+import jakarta.mail.*;
+import jakarta.mail.internet.InternetAddress;
+import jakarta.mail.internet.MimeMessage;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Properties;
 
 public class SAC {
 
@@ -16,6 +20,10 @@ public class SAC {
 
     public LocalDate fechaCierrePlataforma=LocalDate.of(2025, 6, 7);
 
+    String remitente="diegon.penar@uqvirtual.edu.co";
+
+    String clave="mcal qlbh vqpa aktg";
+
     public SAC() {
 
 
@@ -26,8 +34,8 @@ public class SAC {
 
         //Se instancian los estudiantes
 
-        Estudiante estudiante1=new Estudiante("Nicolas","12345678","Hola","☻");
-        Estudiante estudiante2=new Estudiante("Diana","12345679","Adios","☻");
+        Estudiante estudiante1=new Estudiante("Nicolas","12345678","Hola","☻","diegonicolaspenarincon@gmail.com");
+        Estudiante estudiante2=new Estudiante("Diana","12345679","Adios","☻","carlosf.corralesz@uqvirtual.edu.co");
 
         //Se instancian las materias
 
@@ -79,8 +87,8 @@ public class SAC {
         Banco banco1=new Banco("Bancolombia");
         Banco banco2=new Banco("Nequi");
 
-        Estudiante estudiante1=new Estudiante("Nicolas","12345678","Hola","☻");
-        Estudiante estudiante2=new Estudiante("Diana","12345679","Adios","▲");
+        Estudiante estudiante1=new Estudiante("Nicolas","12345678","Hola","☻","carlosf.corralesz@uqvirtual.edu.co");
+        Estudiante estudiante2=new Estudiante("Diana","12345679","Adios","▲","carlosf.corralesz@uqvirtual.edu.co");
 
         Materia materia1=new Materia("Ingenieria de sistemas","Estructura de datos","123");
         materia1.listaNotas.add(5.0);
@@ -127,6 +135,36 @@ public class SAC {
 
          */
 
+    }
+
+    public void solicitudGenerada(String destinatario,String asunto) {
+        Properties propiedades=System.getProperties();
+        propiedades.put("mail.smtp.host", "smtp.gmail.com");
+        propiedades.put("mail.smtp.user", remitente);
+        propiedades.put("mail.smtp.clave", clave);
+        propiedades.put("mail.smtp.auth", "true");
+        propiedades.put("mail.smtp.starttls.enable", "true");
+        propiedades.put("mail.smtp.port", "587");
+        propiedades.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+
+        Session sesion=Session.getDefaultInstance(propiedades);
+        MimeMessage message = new MimeMessage(sesion);
+
+        try
+        {
+            message.setFrom(new InternetAddress(remitente));
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(destinatario));
+            message.setSubject(asunto);
+            message.setText(asunto);
+            Transport transport = sesion.getTransport("smtp");
+            transport.connect("smtp.gmail.com", remitente, clave);
+            transport.sendMessage(message, message.getAllRecipients());
+            transport.close();
+        }
+        catch (MessagingException me)
+        {
+            me.printStackTrace();
+        }
     }
 
 

@@ -10,16 +10,19 @@ public class Estudiante {
     private String Id;
     private String palabraClave;
     private String iconoClave;
+    private String correoEstudiante;
     ArrayList<ReciboPago> listaRecibosPago;
     ArrayList<Materia> listaMaterias;
 
-    public Estudiante(String nombre, String id, String palabraClave, String iconoClave) {
+
+    public Estudiante(String nombre, String id, String palabraClave, String iconoClave,String correo) {
         this.nombre = nombre;
         Id = id;
         this.palabraClave = palabraClave;
         this.iconoClave = iconoClave;
         this.listaRecibosPago = new ArrayList<>();
         this.listaMaterias = new ArrayList<>();
+        this.correoEstudiante=correo;
     }
 
     public String getNombre() {
@@ -68,5 +71,13 @@ public class Estudiante {
 
     public void setListaMaterias(ArrayList<Materia> listaMaterias) {
         this.listaMaterias = listaMaterias;
+    }
+
+    public String getCorreoEstudiante() {
+        return correoEstudiante;
+    }
+
+    public void setCorreoEstudiante(String correoEstudiante) {
+        this.correoEstudiante = correoEstudiante;
     }
 }

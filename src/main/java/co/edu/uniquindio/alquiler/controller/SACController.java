@@ -24,6 +24,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Formatter;
+import java.util.Properties;
 
 public class SACController {
 
@@ -102,6 +103,9 @@ public class SACController {
 
     public Domain domain= Domain.getInstance();
 
+    String remitente="diegon.penar@uqvirtual.edu.co";
+
+    String clave="mcal qlbh vqpa aktg";
 
     public void initialize() {
         materiasTable.setVisible(false);
@@ -223,6 +227,7 @@ public class SACController {
                 alert.setContentText("Su recibo acaba de ser generado");
                 alert.show();
                 crearArchivoHTMLReciboPago(reciboPago);
+                domain.factorySAC.getSac().solicitudGenerada(datos.getEstudianteSeleccionado().getCorreoEstudiante(),"Su recibo de pago con numero de referencia: "+reciboPago.getNumeroReferencia()+" ha sido creado exitosamente.");
             }
             catch (PromedioBajoException e)
             {
