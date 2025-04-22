@@ -36,7 +36,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <TableView fx:id="recibosPagoTable" layoutX="352.0" layoutY="179.0" prefHeight="240.0" prefWidth="429.0" visible="false">
+      <TableView fx:id="recibosPagoTable" layoutX="352.0" layoutY="179.0" prefHeight="240.0" prefWidth="429.0">
         <columns>
           <TableColumn fx:id="IDEstColumn" prefWidth="128.0" text="ID estudiante" />
           <TableColumn fx:id="estadoReciboColumn" prefWidth="95.0" text="Estado recibo" />
@@ -73,7 +73,7 @@
           </tooltip>
       </Label>
       <Button fx:id="revisarNotasButton" layoutX="468.0" layoutY="530.0" mnemonicParsing="false" onAction="#revisarNotasOnAction" prefHeight="25.0" prefWidth="218.0" text="Revisar listado de notas" />
-      <TableView fx:id="notasTable" layoutX="352.0" layoutY="191.0" prefHeight="200.0" prefWidth="528.0">
+      <TableView fx:id="notasTable" layoutX="352.0" layoutY="191.0" prefHeight="200.0" prefWidth="528.0" visible="false">
         <columns>
           <TableColumn fx:id="codigoNotasColumn" prefWidth="75.0" text="Codigo" />
           <TableColumn fx:id="nombreNotasColumn" prefWidth="75.0" text="Nombre" />
