@@ -19,12 +19,11 @@
          </image></ImageView>
       <Line fx:id="barra2" endX="228.0" layoutX="108.0" layoutY="165.0" startX="-108.0" />
       <Line fx:id="barra1" endX="-67.5" endY="333.79290771484375" layoutX="404.0" layoutY="262.0" startX="-67.5" startY="-96.5" />
-      <TableView fx:id="materiasTable" layoutX="455.0" layoutY="195.0" prefHeight="272.0" prefWidth="226.0" visible="false">
+      <TableView fx:id="materiasTable" layoutX="394.0" layoutY="174.0" prefHeight="272.0" prefWidth="492.0">
         <columns>
-          <TableColumn fx:id="nombreMateriaColumn" prefWidth="75.0" text="Nombre" />
-          <TableColumn fx:id="codigoMateriaColumn" prefWidth="75.0" text="Codigo" />
-            <TableColumn fx:id="definitivaColumn" prefWidth="75.0" text="Definitiva" />
-          <TableColumn prefWidth="75.0" text="C2" />
+          <TableColumn fx:id="nombreMateriaColumn" prefWidth="203.0" text="Nombre" />
+          <TableColumn fx:id="codigoMateriaColumn" prefWidth="180.0" text="Codigo" />
+            <TableColumn fx:id="definitivaColumn" prefWidth="108.0" text="Definitiva" />
         </columns>
       </TableView>
       <Button fx:id="novedadesButton" layoutX="45.0" layoutY="175.0" mnemonicParsing="false" onAction="#aparecerNotasAction" text="Solicitud de novedades de notas" />
@@ -36,7 +35,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <TableView fx:id="recibosPagoTable" layoutX="352.0" layoutY="179.0" prefHeight="240.0" prefWidth="429.0">
+      <TableView fx:id="recibosPagoTable" layoutX="352.0" layoutY="179.0" prefHeight="240.0" prefWidth="429.0" visible="false">
         <columns>
           <TableColumn fx:id="IDEstColumn" prefWidth="128.0" text="ID estudiante" />
           <TableColumn fx:id="estadoReciboColumn" prefWidth="95.0" text="Estado recibo" />

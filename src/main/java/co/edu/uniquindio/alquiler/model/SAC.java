@@ -6,6 +6,9 @@ import jakarta.mail.*;
 import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeMessage;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Properties;
@@ -27,7 +30,25 @@ public class SAC {
     public SAC() {
 
 
-       //Se instancian los bancos
+        insertarDatos();
+        //conexionBD.conectarBDSoftware2();
+
+    }
+
+    public double calcularDefinitiva(ArrayList<Double> listadoNotas) {
+        double definitiva=0.0;
+        int centinela=0;
+        for(int i=0;i<listadoNotas.size();i++)
+        {
+            definitiva+=listadoNotas.get(i);
+            centinela++;
+        }
+        return definitiva=definitiva/centinela;
+    }
+
+    public void insertarDatos() {
+
+        //Se instancian los bancos
 
         Banco banco1=new Banco("Bancolombia");
         Banco banco2=new Banco("Nequi");
@@ -53,8 +74,25 @@ public class SAC {
         materia2.listaNotas.add(0.5);
         materia2.notaDefinitiva=calcularDefinitiva(materia2.listaNotas);
 
+        Materia materia3=new Materia("Ingenieria de sistemas","Calculo vectorial","789");
+        materia3.listaNotas.add(4.0);
+        materia3.listaNotas.add(3.0);
+        materia3.listaNotas.add(1.8);
+        materia3.listaNotas.add(3.5);
+        materia3.notaDefinitiva=calcularDefinitiva(materia3.listaNotas);
+
+        Materia materia4=new Materia("Ingenieria de sistemas","Matematicas discretas","012");
+        materia4.listaNotas.add(5.0);
+        materia4.listaNotas.add(2.0);
+        materia4.listaNotas.add(4.8);
+        materia4.listaNotas.add(2.5);
+        materia4.notaDefinitiva=calcularDefinitiva(materia4.listaNotas);
+
         estudiante1.listaMaterias.add(materia1);
         estudiante1.listaMaterias.add(materia2);
+
+        estudiante2.listaMaterias.add(materia3);
+        estudiante2.listaMaterias.add(materia4);
 
         //Se agregan los datos a los listados de los factorys
 
@@ -62,44 +100,14 @@ public class SAC {
         factoryBanco.listaBancos.add(banco2);
 
         factoryEstudiante.Estudiantes.add(estudiante1);
+        factoryEstudiante.Estudiantes.add(estudiante2);
 
         factoryMateria.listaMaterias.add(materia1);
+        factoryMateria.listaMaterias.add(materia2);
+        factoryMateria.listaMaterias.add(materia3);
+        factoryMateria.listaMaterias.add(materia4);
 
 
-
-        //conexionBD.conectarBDSoftware2();
-
-    }
-
-    public double calcularDefinitiva(ArrayList<Double> listadoNotas) {
-        double definitiva=0.0;
-        int centinela=0;
-        for(int i=0;i<listadoNotas.size();i++)
-        {
-            definitiva+=listadoNotas.get(i);
-            centinela++;
-        }
-        return definitiva=definitiva/centinela;
-    }
-
-    public void insertarDatos() {
-
-        /*String metodoInsertarMateria1="INSERT INTO Materias(Estructura de datos,123,Ingenieria de sistemas) VALUES(?,?,?)";
-        String metodoInsertarMateria2="INSERT INTO Materias(Ingenieria de software 2,456,Ingenieria de sistemas) VALUES(?,?,?)";
-        String metodoInsertarMateria3="INSERT INTO Materias(Calculo vectorial,789,Ingenieria de sistemas) VALUES(?,?,?)";
-        String metodoInsertarMateria4="INSERT INTO Materias(Matematicas discretas,012,Ingenieria de sistemas) VALUES(?,?,?)";
-
-        String metodoInsertarNotas1="INSERT INTO Notas(5.0,3.0,2.0,1.5,"+definitiva1+") VALUES(?,?,?,?)";
-        String metodoInsertarNotas2="INSERT INTO Notas(5.0,1.0,0.8,0.5,"+definitiva2+") VALUES(?,?,?,?)";
-        String metodoInsertarNotas3="INSERT INTO Notas(1.0,2.0,1.0,1.5,"+definitiva3+") VALUES(?,?,?,?)";
-        String metodoInsertarNotas4="INSERT INTO Notas(5.0,5.0,3.0,5.0,"+definitiva4+") VALUES(?,?,?,?)";
-
-        //String agregarNuevaNota="INSERT INTO Materias()"
-
-        String metodoInsertarEstudiante1="INSERT INTO Estudiantes(Nicolas,12345678,Hola,☻";
-        String metodoInsertarEstudiante2="INSERT INTO Estudiantes(Diana,12345679,Adios,▲";
-
-         */
 
     }
 
@@ -131,6 +139,27 @@ public class SAC {
         {
             me.printStackTrace();
         }
+    }
+
+    public void importarMaterias() {
+        try
+        {
+            String consulta="SELECT * FROM Materias";
+            Statement stmt = conexionBD.createStatement();
+            ResultSet rs = stmt.executeQuery(consulta);
+
+            while(rs.next())
+            {
+                String nombre = rs.getString("nombre");
+                String codigo = rs.getString("codigoMateria");
+                float nota1 = rs.getFloat("nota1");
+            }
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+
     }
 
 

@@ -4,8 +4,7 @@ import co.edu.uniquindio.alquiler.model.Domain;
 import javafx.scene.control.Alert;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
+import java.sql.*;
 
 public class Conexion {
 
@@ -52,6 +51,27 @@ public class Conexion {
             alert.show();
         }
         return conexionT;
+    }
+
+    public void importarDatos() {
+        try
+        {
+            String consulta="SELECT * FROM Materias";
+            Statement stmt = conexion.createStatement();
+            ResultSet rs = stmt.executeQuery(consulta);
+
+            while(rs.next())
+            {
+                String nombre = rs.getString("nombre");
+                String codigo = rs.getString("codigoMateria");
+                float nota1 = rs.getFloat("nota1");
+            }
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+
     }
 
 }
