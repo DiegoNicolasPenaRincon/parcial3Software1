@@ -45,72 +45,6 @@ public class SAC {
         return definitiva=definitiva/centinela;
     }
 
-    /*public void insertarDatos() {
-
-        //Se instancian los bancos
-
-        Banco banco1=new Banco("Bancolombia");
-        Banco banco2=new Banco("Nequi");
-
-        //Se instancian los estudiantes
-
-        Estudiante estudiante1=new Estudiante("Nicolas","12345678","Hola","☻","diegonicolaspenarincon@gmail.com");
-        Estudiante estudiante2=new Estudiante("Diana","12345679","Adios","☻","carlosf.corralesz@uqvirtual.edu.co");
-
-        //Se instancian las materias
-
-        Materia materia1=new Materia("Ingenieria de sistemas","Estructura de datos","123");
-        materia1.listaNotas.add(5.0);
-        materia1.listaNotas.add(3.0);
-        materia1.listaNotas.add(2.0);
-        materia1.listaNotas.add(1.5);
-        materia1.notaDefinitiva=calcularDefinitiva(materia1.listaNotas);
-
-        Materia materia2=new Materia("Ingenieria de sistemas","Ingenieria de software 2","456");
-        materia2.listaNotas.add(5.0);
-        materia2.listaNotas.add(1.0);
-        materia2.listaNotas.add(0.8);
-        materia2.listaNotas.add(0.5);
-        materia2.notaDefinitiva=calcularDefinitiva(materia2.listaNotas);
-
-        Materia materia3=new Materia("Ingenieria de sistemas","Calculo vectorial","789");
-        materia3.listaNotas.add(4.0);
-        materia3.listaNotas.add(3.0);
-        materia3.listaNotas.add(1.8);
-        materia3.listaNotas.add(3.5);
-        materia3.notaDefinitiva=calcularDefinitiva(materia3.listaNotas);
-
-        Materia materia4=new Materia("Ingenieria de sistemas","Matematicas discretas","012");
-        materia4.listaNotas.add(5.0);
-        materia4.listaNotas.add(2.0);
-        materia4.listaNotas.add(4.8);
-        materia4.listaNotas.add(2.5);
-        materia4.notaDefinitiva=calcularDefinitiva(materia4.listaNotas);
-
-        estudiante1.listaMaterias.add(materia1);
-        estudiante1.listaMaterias.add(materia2);
-
-        estudiante2.listaMaterias.add(materia3);
-        estudiante2.listaMaterias.add(materia4);
-
-        //Se agregan los datos a los listados de los factorys
-
-        factoryBanco.listaBancos.add(banco1);
-        factoryBanco.listaBancos.add(banco2);
-
-        factoryEstudiante.Estudiantes.add(estudiante1);
-        factoryEstudiante.Estudiantes.add(estudiante2);
-
-        factoryMateria.listaMaterias.add(materia1);
-        factoryMateria.listaMaterias.add(materia2);
-        factoryMateria.listaMaterias.add(materia3);
-        factoryMateria.listaMaterias.add(materia4);
-
-
-
-    }
-
-     */
 
     public void solicitudGenerada(String destinatario,String asunto) {
         Properties propiedades=System.getProperties();
@@ -264,6 +198,25 @@ public class SAC {
             recibosPagos.add(factoryReciboPago.getListaRecibosPago().get(i));
         }
         return recibosPagos;
+    }
+
+    public void agregarReciboTablaSql(ReciboPago reciboPago) {
+        String insertador = "INSERT INTO RecibosPago(ID, Nombre, Edad) VALUES (?, ?, ?)";
+        try
+        {
+            Statement stmt = conexionBD.getConexionT().createStatement();
+            ResultSet rs = stmt.executeQuery(insertador);
+            while(rs.next())
+            {
+
+            }
+
+        }
+        catch (SQLException e)
+        {
+            throw new RuntimeException(e);
+        }
+
     }
 
 }
