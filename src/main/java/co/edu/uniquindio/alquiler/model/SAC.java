@@ -11,6 +11,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Properties;
 
 public class SAC {
@@ -28,11 +30,8 @@ public class SAC {
     String clave="";
 
     public SAC() {
-
-
-        insertarDatos();
-        //conexionBD.conectarBDSoftware2();
-
+        conexionBD.conectarBDSoftware2();
+        importarDatosSQL();
     }
 
     public double calcularDefinitiva(ArrayList<Double> listadoNotas) {
@@ -46,7 +45,7 @@ public class SAC {
         return definitiva=definitiva/centinela;
     }
 
-    public void insertarDatos() {
+    /*public void insertarDatos() {
 
         //Se instancian los bancos
 
@@ -111,6 +110,8 @@ public class SAC {
 
     }
 
+     */
+
     public void solicitudGenerada(String destinatario,String asunto) {
         Properties propiedades=System.getProperties();
         propiedades.put("mail.smtp.host", "smtp.gmail.com");
@@ -141,18 +142,77 @@ public class SAC {
         }
     }
 
-    public void importarMaterias() {
+    public void importarDatosSQL() {
         try
         {
             String consulta="SELECT * FROM Materias";
-            Statement stmt = conexionBD.createStatement();
+            Statement stmt = conexionBD.getConexionT().createStatement();
             ResultSet rs = stmt.executeQuery(consulta);
 
             while(rs.next())
             {
                 String nombre = rs.getString("nombre");
                 String codigo = rs.getString("codigoMateria");
+                String programaPerteneciente = rs.getString("programaPerteneciente");
                 float nota1 = rs.getFloat("nota1");
+                float nota2=rs.getFloat("nota2");
+                float nota3=rs.getFloat("nota3");
+                float nota4=rs.getFloat("nota4");
+                float notaDefinitiva=rs.getFloat("notaDefinitiva");
+                Materia materia=new Materia(programaPerteneciente,nombre,codigo);
+                materia.getListaNotas().add(Double.parseDouble(String.valueOf(nota1)));
+                materia.getListaNotas().add(Double.parseDouble(String.valueOf(nota2)));
+                materia.getListaNotas().add(Double.parseDouble(String.valueOf(nota3)));
+                materia.getListaNotas().add(Double.parseDouble(String.valueOf(nota4)));
+                materia.setNotaDefinitiva(notaDefinitiva);
+                factoryMateria.getListaMaterias().add(materia);
+            }
+
+            consulta="SELECT * FROM Bancos";
+            rs = stmt.executeQuery(consulta);
+
+            while(rs.next())
+            {
+                String nombre = rs.getString("nombre");
+
+                Banco banco=new Banco(nombre);
+
+                factoryBanco.getListaBancos().add(banco);
+            }
+
+            consulta="SELECT * FROM RecibosPago";
+            rs = stmt.executeQuery(consulta);
+
+            while(rs.next())
+            {
+                String IDestudiante = rs.getString("IDestudiante");
+                String estadoRecibo = rs.getString("estadoRecibo");
+                LocalDate fechaExpedicion = rs.getDate("fechaExpedicion").toLocalDate();
+                LocalDate fechaPago = rs.getDate("fechaPago").toLocalDate();
+                LocalDate fechaVencimiento = rs.getDate("fechaVencimiento").toLocalDate();
+                int numeroReferencia = rs.getInt("numeroReferencia");
+                String nombreMateria = rs.getString("nombreMateria");
+                String programaPerteneciente=rs.getString("programaPerteneciente");
+
+                ReciboPago reciboPago=new ReciboPago(IDestudiante,EstadoRecibo.valueOf(estadoRecibo),fechaExpedicion,fechaPago,fechaVencimiento,nombreMateria,numeroReferencia,programaPerteneciente);
+                factoryReciboPago.getListaRecibosPago().add(reciboPago);
+            }
+
+            consulta="SELECT * FROM Estudiantes";
+            rs = stmt.executeQuery(consulta);
+
+            while(rs.next())
+            {
+                String nombre = rs.getString("nombre");
+                String IDestudiante = rs.getString("IDestudiante");
+                String palabraClave = rs.getString("palabraClave");
+                String iconoClave = rs.getString("iconoClave");
+                String correo=rs.getString("correo");
+
+                Estudiante estudiante=new Estudiante(nombre,IDestudiante,palabraClave,iconoClave,correo);
+                estudiante.listaMaterias.addAll(verificarMateriasEstudiantes(estudiante));
+                estudiante.listaRecibosPago.addAll(verificarRecibosPago(estudiante));
+                factoryEstudiante.getEstudiantes().add(estudiante);
             }
         }
         catch (SQLException e)
@@ -162,5 +222,48 @@ public class SAC {
 
     }
 
+
+    public ArrayList<Materia> verificarMateriasEstudiantes(Estudiante estudiante) {
+        ArrayList<Materia> materias=new ArrayList<>();
+        try
+        {
+            String consulta="SELECT * FROM Estudiantes_Materias";
+            Statement stmt = conexionBD.getConexionT().createStatement();
+            ResultSet rs = stmt.executeQuery(consulta);
+
+            while(rs.next())
+            {
+                String IDestudiante = rs.getString("IDestudiante");
+                String codigoMateria = rs.getString("codigoMateria");
+
+                if(IDestudiante.equals(estudiante.getId()))
+                {
+                    for(int i=0;i<factoryMateria.getListaMaterias().size();i++)
+                    {
+                        if(factoryMateria.getListaMaterias().get(i).getCodigo().equals(codigoMateria))
+                        {
+                            materias.add(factoryMateria.getListaMaterias().get(i));
+                        }
+                    }
+                }
+            }
+
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return materias;
+    }
+
+    public ArrayList<ReciboPago> verificarRecibosPago(Estudiante estudiante) {
+        ArrayList<ReciboPago> recibosPagos=new ArrayList<>();
+        for(int i=0;i<factoryReciboPago.getListaRecibosPago().size();i++)
+        {
+            factoryReciboPago.getListaRecibosPago().get(i).getIDestudiante().equals(estudiante.getId());
+            recibosPagos.add(factoryReciboPago.getListaRecibosPago().get(i));
+        }
+        return recibosPagos;
+    }
 
 }

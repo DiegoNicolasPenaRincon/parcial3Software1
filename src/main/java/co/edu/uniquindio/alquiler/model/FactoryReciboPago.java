@@ -6,8 +6,8 @@ import java.util.Set;
 
 public class FactoryReciboPago {
 
-    String Id;
-    ArrayList<ReciboPago> listaRecibosPago;
+    private String Id;
+    private ArrayList<ReciboPago> listaRecibosPago;
 
     private static FactoryReciboPago factory;
 
@@ -39,4 +39,5 @@ public class FactoryReciboPago {
     public void setListaRecibosPago(ArrayList<ReciboPago> listaRecibosPago) {
         this.listaRecibosPago = listaRecibosPago;
     }
+
 }

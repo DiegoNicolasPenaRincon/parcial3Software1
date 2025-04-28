@@ -33,7 +33,7 @@ public class Domain {
     //Metodos
 
     public Estudiante accederPlataforma(String palabraClave,String identificacion,String iconoClave) {
-        ArrayList<Estudiante> listaEstudiantes=factorySAC.sac.factoryEstudiante.getEstudiantes();
+        ArrayList<Estudiante> listaEstudiantes=factorySAC.getSac().factoryEstudiante.getEstudiantes();
         for(int i=0;i<listaEstudiantes.size();i++)
         {
             if(listaEstudiantes.get(i).getPalabraClave().equals(palabraClave)&&listaEstudiantes.get(i).getId().equals(identificacion)&&listaEstudiantes.get(i).getIconoClave().equals(iconoClave))
@@ -45,14 +45,14 @@ public class Domain {
     }
 
     public void agregarRecibodePago(Estudiante estudiante,ReciboPago reciboPago,Materia materia) throws PromedioBajoException, ReciboExistenteException {
-        for(int i=0;i<factorySAC.sac.factoryEstudiante.getEstudiantes().size();i++)
+        for(int i=0;i<factorySAC.getSac().factoryEstudiante.getEstudiantes().size();i++)
         {
             if(!reciboExistente(estudiante,reciboPago))
             {
                 if(verificarPromedio(materia))
                 {
-                    factorySAC.sac.factoryEstudiante.getEstudiantes().get(i).listaRecibosPago.add(reciboPago);
-                    i=factorySAC.sac.factoryEstudiante.getEstudiantes().size();
+                    factorySAC.getSac().factoryEstudiante.getEstudiantes().get(i).listaRecibosPago.add(reciboPago);
+                    i=factorySAC.getSac().factoryEstudiante.getEstudiantes().size();
 
                 }
                 else
@@ -87,11 +87,11 @@ public class Domain {
     }
 
     public boolean reciboExistente(Estudiante estudiante,ReciboPago reciboNuevo) {
-        for(int i=0;i<factorySAC.sac.factoryEstudiante.Estudiantes.size();i++)
+        for(int i=0;i<factorySAC.getSac().factoryEstudiante.getEstudiantes().size();i++)
         {
-            for(int j=0;j<factorySAC.sac.factoryEstudiante.Estudiantes.get(i).listaRecibosPago.size();j++)
+            for(int j=0;j<factorySAC.getSac().factoryEstudiante.getEstudiantes().get(i).listaRecibosPago.size();j++)
             {
-                if(factorySAC.sac.factoryEstudiante.Estudiantes.get(i).listaRecibosPago.get(j).numeroReferencia==reciboNuevo.numeroReferencia)
+                if(factorySAC.getSac().factoryEstudiante.getEstudiantes().get(i).listaRecibosPago.get(j).numeroReferencia==reciboNuevo.numeroReferencia)
                 {
                     return true;
                 }
@@ -101,11 +101,11 @@ public class Domain {
     }
 
     public void eliminarReciboPago(Estudiante estudiante,ReciboPago reciboPagoEliminar) {
-        for(int i=0;i<factorySAC.sac.factoryEstudiante.Estudiantes.size();i++)
+        for(int i=0;i<factorySAC.getSac().factoryEstudiante.getEstudiantes().size();i++)
         {
-            if(estudiante.equals(factorySAC.sac.factoryEstudiante.Estudiantes.get(i)))
+            if(estudiante.equals(factorySAC.getSac().factoryEstudiante.getEstudiantes().get(i)))
             {
-                factorySAC.sac.factoryEstudiante.getEstudiantes().get(i).listaRecibosPago.remove(reciboPagoEliminar);
+                factorySAC.getSac().factoryEstudiante.getEstudiantes().get(i).listaRecibosPago.remove(reciboPagoEliminar);
             }
         }
     }

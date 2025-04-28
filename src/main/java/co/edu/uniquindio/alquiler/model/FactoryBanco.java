@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class FactoryBanco {
 
-    ArrayList<Banco> listaBancos;
-    String Id;
+    private ArrayList<Banco> listaBancos;
+    private String Id;
 
     private static FactoryBanco factory;
 
@@ -20,5 +20,21 @@ public class FactoryBanco {
         }
 
         return factory;
+    }
+
+    public String getId() {
+        return Id;
+    }
+
+    public void setId(String id) {
+        Id = id;
+    }
+
+    public ArrayList<Banco> getListaBancos() {
+        return listaBancos;
+    }
+
+    public void setListaBancos(ArrayList<Banco> listaBancos) {
+        this.listaBancos = listaBancos;
     }
 }

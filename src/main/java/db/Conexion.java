@@ -8,13 +8,13 @@ import java.sql.*;
 
 public class Conexion {
 
-    Connection conexionT=null;
+    private Connection conexionT=null;
 
-    String usuario="NicolasPena";
-    String contrasenia="nicolas";
-    String bd="Software2";
-    String Ip="localhost";
-    String puerto="1433";
+    private final String usuario="NicolasPena";
+    private final String contrasenia="nicolas";
+    private final String bd="Software2";
+    private final String Ip="localhost";
+    private final String puerto="1433";
 
     private static Conexion conexion;
 
@@ -53,25 +53,22 @@ public class Conexion {
         return conexionT;
     }
 
-    public void importarDatos() {
+    public void cerrarConexion() {
         try
         {
-            String consulta="SELECT * FROM Materias";
-            Statement stmt = conexion.createStatement();
-            ResultSet rs = stmt.executeQuery(consulta);
-
-            while(rs.next())
-            {
-                String nombre = rs.getString("nombre");
-                String codigo = rs.getString("codigoMateria");
-                float nota1 = rs.getFloat("nota1");
-            }
+            conexionT.close();
         }
         catch (SQLException e)
         {
             e.printStackTrace();
         }
-
     }
 
+    public Connection getConexionT() {
+        return conexionT;
+    }
+
+    public void setConexionT(Connection conexionT) {
+        this.conexionT = conexionT;
+    }
 }

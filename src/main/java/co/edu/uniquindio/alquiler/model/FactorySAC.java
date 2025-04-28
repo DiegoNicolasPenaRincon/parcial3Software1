@@ -2,8 +2,8 @@ package co.edu.uniquindio.alquiler.model;
 
 public class FactorySAC {
 
-    String Id;
-    SAC sac;
+    private String Id;
+    private SAC sac;
     private static FactorySAC factorySAC;
 
     private FactorySAC(){

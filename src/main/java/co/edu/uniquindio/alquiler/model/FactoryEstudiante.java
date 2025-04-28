@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class FactoryEstudiante {
 
-    String Id;
-    ArrayList<Estudiante> Estudiantes;
+    private String Id;
+    private ArrayList<Estudiante> Estudiantes;
 
     private static FactoryEstudiante factory;
 
@@ -37,4 +37,6 @@ public class FactoryEstudiante {
     public void setEstudiantes(ArrayList<Estudiante> estudiantes) {
         Estudiantes = estudiantes;
     }
+
+
 }
