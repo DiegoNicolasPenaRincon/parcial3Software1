@@ -6,14 +6,13 @@ import jakarta.mail.*;
 import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeMessage;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Properties;
+import java.util.*;
+import java.sql.Date;
 
 public class SAC {
 
@@ -201,16 +200,21 @@ public class SAC {
     }
 
     public void agregarReciboTablaSql(ReciboPago reciboPago) {
-        String insertador = "INSERT INTO RecibosPago(ID, Nombre, Edad) VALUES (?, ?, ?)";
+        String insertador = "INSERT INTO RecibosPago(IDestudiante,estadoRecbio,fechaExpedicion,fechaPago,valorPagor,fechaVencimiento,numeroReferencia,nombreMateria) VALUES (?, ?, ?,?,?,?,?,?)";
         try
         {
-            Statement stmt = conexionBD.getConexionT().createStatement();
-            ResultSet rs = stmt.executeQuery(insertador);
-            while(rs.next())
-            {
 
-            }
+            PreparedStatement statement = conexionBD.getConexionT().prepareStatement(insertador);
+            statement.setString(1,reciboPago.getIDestudiante());
+            statement.setString(2,""+reciboPago.getEstadoRecibo());
+            statement.setDate(3,Date.valueOf(reciboPago.getFechaExpedicion()));
+            statement.setDate(4,Date.valueOf(reciboPago.getFechaPago()));
+            statement.setDouble(5,reciboPago.getValorPagar());
+            statement.setDate(6,Date.valueOf(reciboPago.getFechaVencimiento()));
+            statement.setInt(7,reciboPago.getNumeroReferencia());
+            statement.setString(8,reciboPago.getNombreMateria());
 
+            statement.executeUpdate();
         }
         catch (SQLException e)
         {
