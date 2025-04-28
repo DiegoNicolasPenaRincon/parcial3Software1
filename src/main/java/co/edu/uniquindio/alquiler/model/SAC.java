@@ -200,7 +200,7 @@ public class SAC {
     }
 
     public void agregarReciboTablaSql(ReciboPago reciboPago) {
-        String insertador = "INSERT INTO RecibosPago(IDestudiante,estadoRecbio,fechaExpedicion,fechaPago,valorPagor,fechaVencimiento,numeroReferencia,nombreMateria) VALUES (?, ?, ?,?,?,?,?,?)";
+        String insertador = "INSERT INTO RecibosPago(IDestudiante,estadoRecibo,fechaExpedicion,fechaPago,valorPagar,fechaVencimiento,numeroReferencia,nombreMateria) VALUES (?, ?, ?,?,?,?,?,?)";
         try
         {
 
@@ -208,7 +208,7 @@ public class SAC {
             statement.setString(1,reciboPago.getIDestudiante());
             statement.setString(2,""+reciboPago.getEstadoRecibo());
             statement.setDate(3,Date.valueOf(reciboPago.getFechaExpedicion()));
-            statement.setDate(4,Date.valueOf(reciboPago.getFechaPago()));
+            statement.setNull(4,java.sql.Types.DATE);
             statement.setDouble(5,reciboPago.getValorPagar());
             statement.setDate(6,Date.valueOf(reciboPago.getFechaVencimiento()));
             statement.setInt(7,reciboPago.getNumeroReferencia());

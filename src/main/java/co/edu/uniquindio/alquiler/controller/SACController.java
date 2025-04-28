@@ -227,7 +227,7 @@ public class SACController {
                 alert.setContentText("Su recibo acaba de ser generado");
                 alert.show();
                 crearArchivoHTMLReciboPago(reciboPago);
-
+                domain.factorySAC.getSac().agregarReciboTablaSql(reciboPago);
                 domain.factorySAC.getSac().solicitudGenerada(datos.getEstudianteSeleccionado().getCorreoEstudiante(),"Su recibo de pago con numero de referencia: "+reciboPago.getNumeroReferencia()+" ha sido creado exitosamente.");
             }
             catch (PromedioBajoException e)
