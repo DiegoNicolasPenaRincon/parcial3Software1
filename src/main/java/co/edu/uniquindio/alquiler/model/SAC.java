@@ -26,7 +26,7 @@ public class SAC {
 
     String remitente="diegon.penar@uqvirtual.edu.co";
 
-    String clave="fxwd kalm nbvq wgnp";
+    String clave="";
 
     public SAC() {
         conexionBD.conectarBDSoftware2();
