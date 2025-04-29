@@ -26,7 +26,7 @@ public class SAC {
 
     String remitente="diegon.penar@uqvirtual.edu.co";
 
-    String clave="";
+    String clave="fxwd kalm nbvq wgnp";
 
     public SAC() {
         conexionBD.conectarBDSoftware2();
@@ -121,13 +121,15 @@ public class SAC {
                 String IDestudiante = rs.getString("IDestudiante");
                 String estadoRecibo = rs.getString("estadoRecibo");
                 LocalDate fechaExpedicion = rs.getDate("fechaExpedicion").toLocalDate();
-                LocalDate fechaPago = rs.getDate("fechaPago").toLocalDate();
+                Date sqlDate = rs.getDate("fechaPago");
+                LocalDate fechaPago = (sqlDate != null) ? sqlDate.toLocalDate() : null;
                 LocalDate fechaVencimiento = rs.getDate("fechaVencimiento").toLocalDate();
                 int numeroReferencia = rs.getInt("numeroReferencia");
                 String nombreMateria = rs.getString("nombreMateria");
                 String programaPerteneciente=rs.getString("programaPerteneciente");
+                String codigoMateria=rs.getString("codigoMateria");
 
-                ReciboPago reciboPago=new ReciboPago(IDestudiante,EstadoRecibo.valueOf(estadoRecibo),fechaExpedicion,fechaPago,fechaVencimiento,nombreMateria,numeroReferencia,programaPerteneciente);
+                ReciboPago reciboPago=new ReciboPago(IDestudiante,EstadoRecibo.valueOf(estadoRecibo),fechaExpedicion,fechaPago,fechaVencimiento,nombreMateria,numeroReferencia,programaPerteneciente,codigoMateria);
                 factoryReciboPago.getListaRecibosPago().add(reciboPago);
             }
 
@@ -143,8 +145,9 @@ public class SAC {
                 String correo=rs.getString("correo");
 
                 Estudiante estudiante=new Estudiante(nombre,IDestudiante,palabraClave,iconoClave,correo);
+                System.out.print(estudiante.getId());
                 estudiante.listaMaterias.addAll(verificarMateriasEstudiantes(estudiante));
-                estudiante.listaRecibosPago.addAll(verificarRecibosPago(estudiante));
+                estudiante.listaRecibosPago.addAll(verificarRecibosPago(IDestudiante));
                 factoryEstudiante.getEstudiantes().add(estudiante);
             }
         }
@@ -189,18 +192,20 @@ public class SAC {
         return materias;
     }
 
-    public ArrayList<ReciboPago> verificarRecibosPago(Estudiante estudiante) {
+    public ArrayList<ReciboPago> verificarRecibosPago(String IDestudiante) {
         ArrayList<ReciboPago> recibosPagos=new ArrayList<>();
         for(int i=0;i<factoryReciboPago.getListaRecibosPago().size();i++)
         {
-            factoryReciboPago.getListaRecibosPago().get(i).getIDestudiante().equals(estudiante.getId());
-            recibosPagos.add(factoryReciboPago.getListaRecibosPago().get(i));
+            if(factoryReciboPago.getListaRecibosPago().get(i).getIDestudiante().equals(IDestudiante))
+            {
+                recibosPagos.add(factoryReciboPago.getListaRecibosPago().get(i));
+            }
         }
         return recibosPagos;
     }
 
     public void agregarReciboTablaSql(ReciboPago reciboPago) {
-        String insertador = "INSERT INTO RecibosPago(IDestudiante,estadoRecibo,fechaExpedicion,fechaPago,valorPagar,fechaVencimiento,numeroReferencia,nombreMateria) VALUES (?, ?, ?,?,?,?,?,?)";
+        String insertador = "INSERT INTO RecibosPago(IDestudiante,estadoRecibo,fechaExpedicion,fechaPago,valorPagar,fechaVencimiento,numeroReferencia,codigoMateria,nombreMateria,programaPerteneciente) VALUES (?, ?, ?,?,?,?,?,?,?,?)";
         try
         {
 
@@ -212,7 +217,9 @@ public class SAC {
             statement.setDouble(5,reciboPago.getValorPagar());
             statement.setDate(6,Date.valueOf(reciboPago.getFechaVencimiento()));
             statement.setInt(7,reciboPago.getNumeroReferencia());
-            statement.setString(8,reciboPago.getNombreMateria());
+            statement.setString(8,reciboPago.getCodigoMateria());
+            statement.setString(9,reciboPago.getNombreMateria());
+            statement.setString(10,reciboPago.getProgramaPerteneciente());
 
             statement.executeUpdate();
         }
@@ -221,6 +228,37 @@ public class SAC {
             throw new RuntimeException(e);
         }
 
+    }
+
+    public void eliminarReciboTablaSql(ReciboPago reciboPago) {
+        String eliminador = "DELETE FROM RecibosPago WHERE numeroReferencia = ?";
+        try {
+
+            PreparedStatement stmt = conexionBD.getConexionT().prepareStatement(eliminador);
+            stmt.setInt(1, reciboPago.getNumeroReferencia());
+            stmt.executeUpdate();
+        }
+        catch (SQLException e)
+        {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void pagarRecibo(ReciboPago reciboPago) {
+        String actualizador = "UPDATE RecibosPago SET estadoRecibo = ? WHERE numeroReferencia = ?";
+        try {
+
+            PreparedStatement stmt = conexionBD.getConexionT().prepareStatement(actualizador);
+
+            stmt.setString(1,String.valueOf(EstadoRecibo.PAGADO));
+            stmt.setInt(2, reciboPago.getNumeroReferencia());
+
+            stmt.executeUpdate();
+        }
+        catch (SQLException e)
+        {
+            throw new RuntimeException(e);
+        }
     }
 
 }

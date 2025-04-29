@@ -218,7 +218,7 @@ public class SACController {
         if(materiaSeleccionada!=null)
         {
             LocalDate fecha=LocalDate.now();
-            ReciboPago reciboPago=new ReciboPago(estudianteSesionIniciada.getId(), EstadoRecibo.GENERADO, fecha,null,domain.factorySAC.getSac().fechaCierrePlataforma,materiaSeleccionada.getNombre(), (int) (Math.random() * 900) + 100,materiaSeleccionada.getProgramaPerteneciente());
+            ReciboPago reciboPago=new ReciboPago(estudianteSesionIniciada.getId(), EstadoRecibo.GENERADO, fecha,null,domain.factorySAC.getSac().fechaCierrePlataforma,materiaSeleccionada.getNombre(), (int) (Math.random() * 900) + 100,materiaSeleccionada.getProgramaPerteneciente(),materiaSeleccionada.getCodigo());
             try
             {
                 domain.agregarRecibodePago(estudianteSesionIniciada,reciboPago,materiaSeleccionada);
@@ -271,7 +271,7 @@ public class SACController {
                 alert.getButtonTypes().setAll(deshacerButton,aceptarButton);
                 alert.setHeaderText("Informacion");
                 alert.setContentText("Su recibo de pago fue eliminado exitosamente");
-                ReciboPago reciboPagoGuardado=new ReciboPago(reciboPagoEliminar.getIDestudiante(), reciboPagoEliminar.getEstadoRecibo(),reciboPagoEliminar.getFechaExpedicion(),reciboPagoEliminar.getFechaPago(),reciboPagoEliminar.getFechaVencimiento(),reciboPagoEliminar.getNombreMateria(),reciboPagoEliminar.getNumeroReferencia(),reciboPagoEliminar.getProgramaPerteneciente());
+                ReciboPago reciboPagoGuardado=new ReciboPago(reciboPagoEliminar.getIDestudiante(), reciboPagoEliminar.getEstadoRecibo(),reciboPagoEliminar.getFechaExpedicion(),reciboPagoEliminar.getFechaPago(),reciboPagoEliminar.getFechaVencimiento(),reciboPagoEliminar.getNombreMateria(),reciboPagoEliminar.getNumeroReferencia(),reciboPagoEliminar.getProgramaPerteneciente(),reciboPagoEliminar.getCodigoMateria());
                 alert.showAndWait().ifPresent(response -> {
                     if (response == deshacerButton)
                     {
@@ -282,11 +282,15 @@ public class SACController {
                     }
                     else if(response==aceptarButton)
                     {
-                        alert.show();
+                        Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
+                        alert1.setHeaderText("Informacion");
+                        alert1.setContentText("Su recibo de pago fue eliminado exitosamente");
+                        alert1.show();
                         domain.eliminarReciboPago(estudianteSesionIniciada, reciboPagoEliminar);
                         recibosPagoTable.refresh();
                         domain.factorySAC.getSac().solicitudGenerada(datos.getEstudianteSeleccionado().getCorreoEstudiante(),"Su recibo de pago con numero de referencia: "+reciboPagoEliminar.getNumeroReferencia()+" ha sido eliminado exitosamente.");
                         eliminarArchivoHTM(reciboPagoEliminar);
+                        domain.factorySAC.getSac().eliminarReciboTablaSql(reciboPagoEliminar);
                     }
                 });
 

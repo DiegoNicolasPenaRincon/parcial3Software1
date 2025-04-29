@@ -57,7 +57,7 @@ public class Domain {
                 }
                 else
                 {
-                    throw new PromedioBajoException("No puede habilitar esa materia, su promedio es muy bajo");
+                    throw new PromedioBajoException("No puede habilitar esa materia, su promedio es muy bajo o es mayor igual a 3.0");
                 }
             }
             else
@@ -68,7 +68,7 @@ public class Domain {
     }
 
     public boolean verificarPromedio(Materia materia) {
-        if(materia.getNotaDefinitiva()>1.9)
+        if(materia.getNotaDefinitiva()>1.9&&materia.getNotaDefinitiva()<3.0)
         {
             return true;
         }
@@ -78,7 +78,7 @@ public class Domain {
     public ReciboPago encontrarReciboPagar(Estudiante estudiante,int codigoReferencia) {
         for(int i=0;i<estudiante.listaRecibosPago.size();i++)
         {
-            if(estudiante.listaRecibosPago.get(i).numeroReferencia==codigoReferencia)
+            if(estudiante.listaRecibosPago.get(i).getNumeroReferencia()==codigoReferencia)
             {
                 return estudiante.listaRecibosPago.get(i);
             }
@@ -91,7 +91,7 @@ public class Domain {
         {
             for(int j=0;j<factorySAC.getSac().factoryEstudiante.getEstudiantes().get(i).listaRecibosPago.size();j++)
             {
-                if(factorySAC.getSac().factoryEstudiante.getEstudiantes().get(i).listaRecibosPago.get(j).numeroReferencia==reciboNuevo.numeroReferencia)
+                if(factorySAC.getSac().factoryEstudiante.getEstudiantes().get(i).listaRecibosPago.get(j).getNumeroReferencia()==reciboNuevo.getNumeroReferencia())
                 {
                     return true;
                 }
@@ -113,15 +113,26 @@ public class Domain {
     public void pagarRecibo(Estudiante estudiante,int numeroReferencia) {
         for(int i=0;i<estudiante.getListaRecibosPago().size();i++)
         {
-
-            if(estudiante.getListaRecibosPago().get(i).getNumeroReferencia()==numeroReferencia&&estudiante.getListaRecibosPago().get(i).getEstadoRecibo()==EstadoRecibo.GENERADO)
+            ReciboPago reciboPagoEncontrado=buscarReciboPago(estudiante,numeroReferencia);
+            if(reciboPagoEncontrado!=null)
             {
                 estudiante.getListaRecibosPago().get(i).setEstadoRecibo(EstadoRecibo.PAGADO);
-                estudiante.getListaRecibosPago().get(i).fechaPago= LocalDate.now();
-                estudiante.getListaRecibosPago().get(i).fechaVencimiento=null;
+                estudiante.getListaRecibosPago().get(i).setFechaPago(LocalDate.now());
+                estudiante.getListaRecibosPago().get(i).setFechaVencimiento(null);
                 i=estudiante.getListaRecibosPago().size();
             }
         }
+    }
+
+    public ReciboPago buscarReciboPago(Estudiante estudiante,int numeroReferencia) {
+        for (int i = 0; i < estudiante.getListaRecibosPago().size(); i++) {
+
+            if (estudiante.getListaRecibosPago().get(i).getNumeroReferencia() == numeroReferencia && estudiante.getListaRecibosPago().get(i).getEstadoRecibo() == EstadoRecibo.GENERADO)
+            {
+                return estudiante.getListaRecibosPago().get(i);
+            }
+        }
+        return null;
     }
 
     public void ejecutarArchivoHtml(String rutaArchivo)  {

@@ -6,17 +6,18 @@ import java.time.LocalDate;
 
 public class ReciboPago {
 
-    String IDestudiante;
-    EstadoRecibo estadoRecibo;
-    LocalDate fechaExpedicion;
-    LocalDate fechaPago;
-    final double valorPagar=300;
-    LocalDate fechaVencimiento;
-    String nombreMateria;
-    int numeroReferencia;
-    String programaPerteneciente;
+    private String IDestudiante;
+    private EstadoRecibo estadoRecibo;
+    private LocalDate fechaExpedicion;
+    private LocalDate fechaPago;
+    private final double valorPagar=300;
+    private LocalDate fechaVencimiento;
+    private String nombreMateria;
+    private  int numeroReferencia;
+    private String programaPerteneciente;
+    private String codigoMateria;
 
-    public ReciboPago(String IDestudiante, EstadoRecibo estadoRecibo, LocalDate fechaExpedicion, LocalDate fechaPago, LocalDate fechaVencimiento,String nombreMateria,int numeroReferencia,String programaPerteneciente) {
+    public ReciboPago(String IDestudiante, EstadoRecibo estadoRecibo, LocalDate fechaExpedicion, LocalDate fechaPago, LocalDate fechaVencimiento,String nombreMateria,int numeroReferencia,String programaPerteneciente,String codigoMateria) {
         this.IDestudiante = IDestudiante;
         this.estadoRecibo = estadoRecibo;
         this.fechaExpedicion = fechaExpedicion;
@@ -25,6 +26,7 @@ public class ReciboPago {
         this.nombreMateria = nombreMateria;
         this.numeroReferencia = numeroReferencia;
         this.programaPerteneciente = programaPerteneciente;
+        this.codigoMateria = codigoMateria;
     }
 
     public String getIDestudiante() {
@@ -93,5 +95,13 @@ public class ReciboPago {
 
     public void setProgramaPerteneciente(String programaPerteneciente) {
         this.programaPerteneciente = programaPerteneciente;
+    }
+
+    public String getCodigoMateria() {
+        return codigoMateria;
+    }
+
+    public void setCodigoMateria(String codigoMateria) {
+        this.codigoMateria = codigoMateria;
     }
 }

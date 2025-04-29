@@ -70,6 +70,7 @@ public class pagosEnLineaController {
     public void pagarOnAction(ActionEvent actionEvent) {
         if(!nombreEstudianteTextField.getText().isEmpty() && !codigoTextField.getText().isEmpty() && !valorAPagarTextField.getText().isEmpty())
         {
+            domain.factorySAC.getSac().pagarRecibo(domain.buscarReciboPago(datos.getEstudianteSeleccionado(),Integer.parseInt(identificacionTxtField.getText())));
             domain.pagarRecibo(datos.getEstudianteSeleccionado(),Integer.parseInt(identificacionTxtField.getText()));
             domain.factorySAC.getSac().solicitudGenerada(datos.getEstudianteSeleccionado().getCorreoEstudiante(),"Su recibo de pago con numero de referencia: "+identificacionTxtField.getText()+" ha sido pagado exitosamente.");
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
