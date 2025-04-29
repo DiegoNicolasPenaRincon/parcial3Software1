@@ -1,20 +1,9 @@
-## AlquilaFácil
+Presentado por: Diego Nicolas Pena Rincon y Juan Pablo Sanchez Lopez
 
-Software para una empresa de alquiler de vehículos donde se gestiona la información de sus clientes, vehículos y alquileres. Se pueden realizar consultas de los clientes, vehículos y alquileres registrados, así como también se pueden realizar alquileres.
+El proyecto se realizo teniendo en cuenta el proceso de solicitud de habilitacion de la universidad del Quindio.
 
-### Tecnologías utilizadas
-- Java 17
-- Open JavaFX 17
-- Maven
-
-### Ejecución
-
-Para su ejecución debe usar Maven y su plugin de JavaFX:
-
-```
-mvn clean javafx:run
-```
-
----
-
-Universidad del Quindío 💚 - Ingeniería de sistemas y computación - 2023-2
+Recomendaciones:
+ -Hay que tener muy en cuenta que la base de datos fue hecha en SQL server.
+ -Hay que tener en cuenta que el archivo que se debe importar al SQL server managment studio se encuentra en la carpeta /src/BaseDatosSQL.
+ -Hay que tener muy en cuenta que se debe reemplazar el correo de la clase SAC por uno que sea propio del usuario de la aplicacion -desarrolador-.
+ -Hay que tener en cuenta que se debe crear una clave de aplicacion en el correo del desarrollador e implementarla en la clase SAC, variable String clave.
