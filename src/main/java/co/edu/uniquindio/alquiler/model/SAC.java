@@ -24,7 +24,7 @@ public class SAC {
 
     public LocalDate fechaCierrePlataforma=LocalDate.of(2025, 6, 7);
 
-    String remitente="diegon.penar@uqvirtual.edu.co";
+    String remitente="";
 
     String clave="";
 
